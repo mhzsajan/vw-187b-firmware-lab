@@ -16,7 +16,7 @@ that carries the evidence) or explicitly marked as an **open question**.
 | Desay: unit identity + engineering mode | **done** (`docs/desay-unit-identity.md`) |
 | NoName: package format, Android Auto stack, Skoda-theme mechanism | **done** (`docs/noname-platform.md`) |
 | Feasibility answer (AA / Skoda theme per family) | **done** (`docs/feasibility-report.md`) |
-| Desay: package validation (MD5 vs signature) | **open — the single blocking question** |
+| Desay: package validation (MD5 vs signature) | **done — it is plain `md5sum` vs the sidecar** (`docs/validation-and-repack.md`) |
 | Desay: UART/console access, GP-device check, MCU coding | **open — needs hardware** |
 
 ## 2. Confirmed findings (one line each, with the source doc)
@@ -57,9 +57,13 @@ other 187B revision, not this one (this unit is 1 GB).
 
 ## 3. Open questions (ordered)
 
-1. **Is `svapi_vw_upgrade_package_is_valid` a plain whole-file MD5 or a signature?**
-   `libupdate.so.1.0.0` (ARM ELF, 820 KB) + `bin/updateservice` (844 KB). Decides whether a
-   repacked Desay `.bin` can ever be flashed.
+1. ~~Is `svapi_vw_upgrade_package_is_valid` a plain whole-file MD5 or a signature?~~
+   **ANSWERED: plain `md5sum`.** It shells out `md5sum <pkg> > /tmp/upgrade.md5`, parses the
+   sidecar (`%s.md5`) and compares (`error: %s md5 no match` → `package unvalid`). No libcrypto,
+   no certificates, no signature. Evidence: `docs/validation-and-repack.md`.
+   Follow-ups now: (a) what does `CheckRowChecksum` in `updateservice` actually verify?
+   (b) do the `VERSION:`/`ROLL_BACK_NO:` comparisons allow reflashing the same versions
+   (`"%s is match, no upgrade"` suggests it is a no-op skip)?
 2. Where is the **rollback counter** live (`CheckRollbackValue` / `SaveRollBackNoToMU`) and can it
    be read/written from Linux (`persistservice`)?
 3. Is the DRA72x a **GP (unsigned boot) device**? (uImages carry no signature → likely yes.)

@@ -15,16 +15,35 @@ Phase 2 — Desay package internals — **in progress**, container table decoded
       with absolute start offsets, all boundaries validated (`docs/desay-container.md`).
 - [x] Confirm the shipped `.md5` sidecar is the **whole-file** MD5 and that it matches.
 
-## P1 — Desay package validation (highest value)
+## P1 — Desay package validation — **ANSWERED (md5sum, no signature)**
 
-- [ ] Disassemble `svapi_vw_upgrade_package_is_valid` / `svapi_vw_read_pkg_md5(-_info)` in
-      `libupdate.so.1.0.0` (ARM ELF, 820 KB) and `bin/updateservice` (844 KB): is validity just
-      the whole-file MD5 (feasible repack) or a cryptographic signature (dead end)?
-- [ ] Trace `CheckRollbackValue` / `SaveRollBackNoToMU`: where is the rollback counter live
-      (MCU EEPROM? eMMC partition?) and does it compare only `ROLL_BACK_NO` from the sidecar?
-- [ ] Reproduce the two on-screen checksums (`0xc473` radio SW, `0xda8c` bootloader). Not a
-      stored header field; try CRC32-low16, summed words, and hashes over `radio.bin` vs the
-      *uncompressed* app data. This tells us what else a hand-made package must satisfy.
+- [x] `svapi_vw_upgrade_package_is_valid` lives in `/usr/lib/libsvapi_vw.so.1.4.0` (rootfs inside
+      `os.bin` → `targetfs.bin` → ext4). It shells out `md5sum <pkg> > /tmp/upgrade.md5`, parses
+      the `.md5` sidecar and compares; mismatch → `package unvalid`. **No crypto dependency**
+      (DT_NEEDED: only libc/libdrm/librt). Full evidence: `docs/validation-and-repack.md`.
+- [x] Version/rollback logic is in the same library: `the svp/app/radio/os version`, `the size of
+      the rollback`, `%s is match, no upgrade`.
+- [ ] Follow-up: what does `CheckRowChecksum` (in `updateservice`) verify — eMMC write-verify or
+      payload integrity?
+- [ ] Follow-up: confirm that reflashing identical versions is skipped (`"is match, no upgrade"`)
+      and that rollback counters only block downgrades.
+- [ ] On-screen checksums `0xc473` / `0xda8c` — still unexplained; low priority now.
+
+## P1.2 — Build the repacker (M2)
+
+- [ ] `tools/desay/repack.py`: parse the 5-record table → replace only the modified component →
+      fix offsets/sizes → recompute whole-file md5 → regenerate sidecar with the original
+      `VERSION:`/`ROLL_BACK_NO:` lines.
+- [ ] Acceptance test: repack **without** modification reproduces a byte-identical `.bin`.
+- [ ] Then a single-asset delta (e.g. one `.png` inside `app-pkg.bin`) and verify content.
+
+## P2 — Desay logo path (new lead)
+
+- [ ] `libsvapi_vw.so.1.4.0` exports `svapi_exlap_logo_get/_set` and logs
+      `"svapi: load exlap_logo_index, invalid, Using default"` — find the **exlap logo index**
+      file/format: the logo may be selectable by an index, not only baked into the Kanzi bundle.
+- [ ] Check `app-pkg`/`svp.bin` for the index file and the logo assets it references.
+- [ ] Only after that decide whether a Skoda logo needs Kanzi authoring or just an index entry.
 
 ## P1.5 — Extract the remaining Desay components — **done**
 

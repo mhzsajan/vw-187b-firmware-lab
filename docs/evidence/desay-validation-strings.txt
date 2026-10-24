@@ -1,0 +1,71 @@
+﻿# libsvapi_vw.so.1.4.0 - relevant strings (Desay SW0317 rootfs)
+# source: os.bin -> targetfs.bin (gzip) -> ext4 rootfs -> /usr/lib/libsvapi_vw.so.1.4.0
+%d the packages is %d, the valid is %d!
+%s offset=0x%08x to %s size=0x%08x
+%s to %s offset=%dM size=%dByte
+%s.md5
+.gnu.version
+.gnu.version_r
+/dev/mmcblk0
+/dev/mmcblk1
+/dev/mmcblk1p1
+/dev/mmcblk1p3
+/dev/mmcblk2
+/dev/mmcblk2p1
+/dev/mmcblk2p3
+/dev/mtd0
+/dev/mtd3
+/media/hub_usbstorage0
+/media/hub_usbstorage1
+/media/usbstorage0
+/media/usbstorage1
+/proc/mounts
+/tmp/upgrade.md5
+Erase of length %u at offset 0x%x
+MTD Erase failure
+MTD Unlock failure
+OS:svapi:%s  params invalid
+VERSION:%s
+Write nor offset=0x%x size=%dByte
+app%d: %s magic-%x, len-%8x
+copy to emmc check----- the %s offset 0x%x, len 0x%x
+erase_size = %d
+erasesize=%d is not support
+error: %s md5 no match
+error: Can not open /tmp/upgrade.md5
+error: the magic is %x and len is %x
+md5sum %s > /tmp/upgrade.md5
+md5sum error
+name:%s, size=%x, offset=%x, package=%d
+os%d: %s magic-%x, len-%8x
+package unvalid
+pkg magic error
+pkg magic error magic[%x]
+pkg.offset %x, file.offset: %x 
+radio%d: %s magic-%x, len-%8x
+rm -rf /tmp/upgrade.md5
+svapi: load exlap_logo_index, invalid, Using default
+svapi_exlap_logo_get
+svapi_exlap_logo_set
+svapi_vw_get_version
+svapi_vw_read_pkg_md5_info
+svapi_vw_read_pkg_md5_info error
+svapi_vw_rollback_get
+svapi_vw_rollback_set
+svapi_vw_upgrade_os_package
+svapi_vw_upgrade_package_is_valid
+svapi_vw_upgrade_package_to_file
+svp%d:  magic-%x, len-%8x %s
+svp%d: %s magic-%x, offset-%8x, len-%d
+system
+the %s offset 0x%x, len 0x%x
+the app_version %s %d
+the magic is %d and len is %d
+the os version %s %d
+the pak_message.version is %s, and the version is %s
+the project version %s 
+the radio version %s %d
+the size of file is error
+the size of the rollback is %d
+the svp_version %s %d
+unlock at offset 0mtd_erase_vwx%x
