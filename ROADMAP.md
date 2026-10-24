@@ -1,51 +1,62 @@
 # Roadmap
 
-Phase 1 — platform identification & feasibility — **done** (see `docs/feasibility-report.md`).
+Phase 1 — platform identification & feasibility — **done** (`docs/feasibility-report.md`).
+Phase 2 — Desay package internals — **in progress**, container table decoded and verified.
 
-## Open questions, ordered by value
+## Done
 
-### P1 — Decide whether Desay packages are modifiable at all
-- [ ] Statically analyse `svapi_vw_upgrade_package_is_valid` / `svapi_vw_read_pkg_md5` in
-      `libupdate.so.1.0.0` (ARM ELF, 820 KB) and `bin/updateservice` (844 KB).
-      Target: does validity reduce to the plain MD5 that the shipped `.md5` sidecar already
-      contains, or is there a signature/HMAC over the payload?
-- [ ] Map the container component records fully (all `48 81 48 81` records between `0x000` and
-      `0x200000`, their sizes/names/tags) — currently only `os.bin` + header are parsed.
-- [ ] Identify the rollback-counter storage ("MU") and the exact check
-      (`CheckRollbackValue`, `SaveRollBackNoToMU`) — this determines whether a self-made
-      package would be refused purely on version numbers.
+- [x] Identify both platforms (Desay: U-Boot SPL 2014.07 / "Desay-SV G5 Board" / Linux 3.14.57;
+      NoName: i.MX6 / LTIB / Linux 3.0.35).
+- [x] Prove Android Auto absence in the Desay image and presence in the NoName image.
+- [x] Decode the NoName "Skoda theme" mechanism (raw 800×480 splash `dd` to `/dev/mtdblock5`).
+- [x] Identify the owner's installed unit from its screens — **SW0317 / HW 036 / OS
+      MIB2-C-V20-20200303** — and match it to the library image (`docs/desay-unit-identity.md`).
+- [x] Decode the Desay container record table: `svp.bin`, `app-pkg.bin`, `radio.bin`, `os.bin`
+      with absolute start offsets, all boundaries validated (`docs/desay-container.md`).
+- [x] Confirm the shipped `.md5` sidecar is the **whole-file** MD5 and that it matches.
 
-**Why:** this is the gate for every Desay-side idea (custom splash, UI cleanup, diagnostics).
+## P1 — Desay package validation (highest value)
 
-### P2 — Desay boot logo path
-- [ ] Parse the `.KZB` format enough to locate the `logo` texture inside
-      `share/ui/*_G5_Logo.kzb` (embedded PNG at offset 91083 in the analysed file) and check
-      whether replacing it with an 800×480 image produces a valid bundle.
-- [ ] Verify whether the UI app id 19 (`app-run 19 #logo`) reads only that bundle or also an
-      MTD partition (check `strings` in the logo app / `libuifw-kanzi.so` for `/dev/mtd*`).
+- [ ] Disassemble `svapi_vw_upgrade_package_is_valid` / `svapi_vw_read_pkg_md5(-_info)` in
+      `libupdate.so.1.0.0` (ARM ELF, 820 KB) and `bin/updateservice` (844 KB): is validity just
+      the whole-file MD5 (feasible repack) or a cryptographic signature (dead end)?
+- [ ] Trace `CheckRollbackValue` / `SaveRollBackNoToMU`: where is the rollback counter live
+      (MCU EEPROM? eMMC partition?) and does it compare only `ROLL_BACK_NO` from the sidecar?
+- [ ] Reproduce the two on-screen checksums (`0xc473` radio SW, `0xda8c` bootloader). Not a
+      stored header field; try CRC32-low16, summed words, and hashes over `radio.bin` vs the
+      *uncompressed* app data. This tells us what else a hand-made package must satisfy.
 
-### P3 — Android Auto research
-- [ ] Confirm from `aap_service` strings which AAP protocol version and USB mode are used, and
-      whether the stack needs a Google-signed head-unit cert beyond the bundled dev cert
-      (this explains why clones can ship AA and Desay does not).
-- [ ] Document the CarPlay→AA dongle option (no firmware risk) as the supported path for the
-      Desay unit.
+## P1.5 — Extract the remaining Desay components
 
-### P4 — NoName tooling
-- [ ] `tools/theme/render_logo.py`: add `--from-png` direction (PNG → 800×480 BGRA
-      `logo.bin` with the 4-byte header) so a custom splash can be round-tripped and re-packed
-      into a logo overlay tar.
-- [ ] `tools/noname/repack.py`: build a minimal overlay tar (config.txt + `script/*.sh` +
-      payload) from a directory, with correct tar padding so the unit's updater accepts it.
-- [ ] Verify the MTD5 backup/restore procedure on hardware.
+- [ ] `app-pkg.bin` (52.5 MB gzip → tar): what ships here vs `svp.bin`? Possibly the Kanzi
+      themes/resources, navigation app, or a second userspace.
+- [ ] `os.bin` nested pack (own record table, count 3): parse its three sub-records and extract
+      kernel / U-Boot / any splash partition.
+- [ ] `radio.bin` (401,200 bytes, flat): identify format (MCU/DSP image?) and whether it holds
+      the tuner/amp MCU firmware. Compare with the `rmt_only` update mode.
 
-### P5 — Documentation / library
-- [ ] Keep `docs/library-manifest.md` in sync with the local library on `I:\187B-Firmware-Library`
-      (regenerate with `tools/arrange/arrange_187b.ps1`, which dedupes by SHA-256 and
-      normalises ACLs so locked source files become readable copies).
+## P2 — Desay boot logo path
+
+- [ ] Determine whether the logo texture inside `<Brand>_G5_Logo.kzb` can be replaced while
+      keeping the bundle valid (locate the `logo` node; the PNG at offset 91083 is a candidate).
+- [ ] Confirm the UI reads the logo only from the bundle (not from an MTD partition): grep the
+      logo app / `libuifw-kanzi.so` for `/dev/mtd*` and for `Logo.kzb` paths.
+
+## P3 — Engineering mode
+
+- [ ] Document how the engineering menu is entered (owner knows; add the exact key sequence).
+- [ ] Inventory what each entry does, especially `初始化` (initialise), `EOL Off`, `USB/CarPlay`
+      test, `BT调试` (BT debug), `首次连接` — any of these may expose useful logs or state.
+- [ ] Check whether any entry can trigger an update from USB/SD (the System Information screen
+      already has an `Update software` button).
+
+## P4 — NoName tooling
+
+- [ ] `tools/theme/render_logo.py`: add the reverse direction (PNG → 800×480 BGRA `logo.bin`
+      with the 4-byte header) plus an overlay-tar packer, so custom splashes can be produced.
+- [ ] Verify the MTD5 backup/restore procedure on hardware before writing anything.
 
 ## Non-goals
 
-- Cross-flashing Desay ↔ NoName firmware. Different bootloader, kernel, partitions; not a
-  reversible experiment.
+- Cross-flashing Desay ↔ NoName firmware (different bootloader, kernel, partitions).
 - Shipping firmware blobs, vendor UI resources or certificates in this repository.

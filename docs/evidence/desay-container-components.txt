@@ -1,0 +1,34 @@
+﻿file = 6RD_035_187B_TR7247_SW0317_20200303.bin
+size = 222,740,754 (0xD46C112)
+
+   rec        value          hex  name             version
+0x0000            2 0x00000002  6RD_035_187B_TR7247_SW0317 ü*
+0x0200    2,097,152 0x00200000  svp.bin          SVP30.6@C1
+0x0400   85,903,355 0x051ec7fb  app-pkg.bin      MP2017_PQ_07.54_200303__C
+0x0600  138,421,001 0x08402309  radio.bin        07.54_200303__C
+0x0800  138,822,201 0x08464239  os.bin           MIB2-C-V20-20200303
+
+boundaries: ['0x2', '0x200000', '0x51ec7fb', '0x8402309', '0x8464239']
+
+segments (start..end, size):
+  0x00000002..0x00200000   2,097,150  48 81 02 00 00 00 36 52  other
+  0x00200000..0x051ec7fb  83,806,203  1f 8b 08 00 37 06 5e 5e  gzip
+  0x051ec7fb..0x08402309  52,517,646  1f 8b 08 00 41 06 5e 5e  gzip
+  0x08402309..0x08464239     401,200  d0 65 42 20 51 07 40 00  other
+  0x08464239..0x0d46c112  83,918,553  48 81 48 81 03 00 00 00  other
+
+uImage headers found:
+  0x08464c39 size= 3,722,576 load=0x80008000 os=5 arch=2 type=2 name='Linux-3.14.57'
+  0x08d1f3c0 size=1,756,299,808 load=0x28cbe9f5 os=27 arch=241 type=48 name='\x1e}9¦\x7f¢ÀÜ'
+
+checksum hunt on small windows (Radio SW 0xc473 / Bootloader 0xda8c):
+  seg 0x2 (0x2..0x200000, 2,097,150 B)  ccitt-false=d500  xmodem=d500  arc=00d5  modbus=00d5  x25=ff2a  kermit=00d5  crc32=39d856ca
+  seg 0x8402309 (0x8402309..0x8464239, 401,200 B)  ccitt-false=4b00  xmodem=4b00  arc=004b  modbus=004b  x25=ffb4  kermit=004b  crc32=7ee13d5e
+  bl-64K (0x83fab09..0x840ab09, 65,536 B)  ccitt-false=1700  xmodem=1700  arc=0017  modbus=0017  x25=ffe8  kermit=0017  crc32=dbfef2e8
+  bl-256K (0x83e2b09..0x8422b09, 262,144 B)  ccitt-false=bb00  xmodem=bb00  arc=00bb  modbus=00bb  x25=ff44  kermit=00bb  crc32=282a6199
+
+verbatim search for c4 73 / 8c da inside the file (first 6 hits each):
+  0xc473: 279 hits, first: ['0x20a88d', '0x211419', '0x2142bd', '0x22500d', '0x242fd2', '0x254a83']
+  0xda8c: 247 hits, first: ['0x20c77e', '0x21e0a1', '0x238fe7', '0x23e3b3', '0x245ba0', '0x26ff94']
+
+md5(whole) = c7d9bd20d4eaa929d91e4dcbe75bfba3   sidecar = c7d9bd20d4eaa929d91e4dcbe75bfba3

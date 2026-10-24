@@ -1,59 +1,64 @@
 # Desay SV `6RD 035 187B` — `.bin` container notes
 
-Build analysed: `6RD_035_187B_TR7247_SW0358_20180328.bin` (222,167,385 bytes) and
-`6RD_035_187B_TR7247_SW0318_20170901.bin` (226,262,078 bytes, "0318_RED").
-Both from the owner's firmware set; hashes in `docs/library-manifest.md`.
+Build analysed: `6RD_035_187B_TR7247_SW0317_20200303.bin` (222,740,754 bytes) — **this is the
+build the owner's unit is actually running** (see `docs/desay-unit-identity.md`), plus
+`…_SW0358_20180328.bin` and `…_SW0318_20170901.bin` ("0318_RED").
 
-## 1. Top-level layout
+## 1. Verified container structure
 
-```
-0x000000  header record (magic 48 81 48 81, "…SW0358", "mib2", build tag)
-0x000800  component record  (magic 48 81 48 81, size 0x083d3a80, name "os.bin",
-                             version "MIB2-C-V18-20171207")
-0x000fff … 0x1fffff  zero padding (header area is ~336 non-zero bytes in total)
-0x200000  payload: valid gzip stream -> tar archive  (the application partition)
-   …      further components / kernel / U-Boot image later in the file
-0x83d4480 (approx)  U-Boot uImage  "Linux-3.14.57", load 0x80008000, ARM
-0x88f5280 (approx)  U-Boot uImage  type Firmware, "U-Boot 2014.07-00209-g36d39ae"
-```
-
-Header fields observed (little-endian), from `tools/desay/container_probe.py` output:
-
-| offset | bytes | reading |
-|---|---|---|
-| `0x00` | `48 81 48 81` | record magic |
-| `0x04` | `02 00 00 00` | record type / count |
-| `0x08` | `36 52 44 5f …` | ASCII model `6RD_035_187B_TR7247_SW0358` |
-| `0x2b` | `6d 69 62 32` | ASCII `mib2` |
-| `0x800` | `48 81 48 81` | second record magic |
-| `0x804` | `80 3a 3d 08` | `0x083d3a80` = 138,266,240 (component length, matches payload span) |
-| `0x808` | `6f 73 2e 62 69 6e` | ASCII `os.bin` component name |
-| `0x84c` | `4d 49 42 32 …` | ASCII `MIB2-C-V18-20171207` component version |
-
-The `.md5` sidecars are **not just a hash**: they list component versions and rollback
-counters, e.g.
+The first 2 MB is a header area containing a **record table**, 0x200 bytes per record:
 
 ```
-deffdeb0c04848354ba65b0e57a68b79  .//6RD_035_187B_TR7247_SW0358_20180328.bin
-VERSION:SVP30.6@C1                    ROLL_BACK_NO:1
-VERSION:MP2017_PQ_07.30_180328__C     ROLL_BACK_NO:1
-VERSION:07.30_180328__C               ROLL_BACK_NO:1
-PROJECT:GEN2_PQ_MP2017                ROLL_BACK_NO:1
-VERSION:MIB2-C-V18-20171207           ROLL_BACK_NO:5
+0x000000  record 0 : magic 48 81 48 81 | u32 = 2 (record count) | name = <file>.bin | "mib2"
+0x000200  record 1 : svp.bin      | u32 = 0x00200000 =     2,097,152  (start offset) | SVP30.6@C1
+0x000400  record 2 : app-pkg.bin  | u32 = 0x051EC7FB =    85,903,355                 | MP2017_PQ_07.54_200303__C
+0x000600  record 3 : radio.bin    | u32 = 0x08402309 =   138,421,001                 | 07.54_200303__C
+0x000800  record 4 : os.bin       | u32 = 0x08464239 =   138,822,201                 | MIB2-C-V20-20200303
+0x000A00 … 0x1FFFFF  zero padding
 ```
 
-## 2. Payload extraction
+Each record: `magic(4) | u32 absolute start offset(4) | name(0x20, NUL padded) | … | version @+0x4C`.
 
-The payload at `0x200000` is a plain **gzip** stream (header `1f 8b 08 00 …`, mtime
-`1522234714`, OS=3) that decompresses to a **tar** archive whose first member is `./bin/`.
+The start offsets are **cumulative boundaries**, and every one was validated against the data
+(`tools/desay/verify_container.py`, output in
+`docs/evidence/desay-container-components.txt`):
 
-Recipe (see `tools/desay/carve.py`): wrap the file in a seekable slice starting at
-`0x200000`, feed it to `gzip.GzipFile`, then `tarfile.open(mode='r|')` and stream members.
-No decryption is involved — the application partition is readable.
+| component | span | size | first bytes | interpretation |
+|---|---|---|---|---|
+| `svp.bin` | `0x200000` – `0x51EC7FB` | 83.8 MB | `1f 8b 08 00` | **gzip → tar**: SVP service framework, Kanzi UI, CarPlay/CarLife/MirrorLink libs, `share/ui/*.kzb` |
+| `app-pkg.bin` | `0x51EC7FB` – `0x8402309` | 52.5 MB | `1f 8b 08 00` | **gzip → tar**: application package (not yet extracted) |
+| `radio.bin` | `0x8402309` – `0x8464239` | 401,200 | `d0 65 42 20 51 07 40 00` | raw **radio/MCU firmware** (not gzip) |
+| `os.bin` | `0x8464239` – EOF | 83.9 MB | `48 81 48 81 03 00 00 00` | **nested pack with its own record table** (count 3): kernel / U-Boot / OS image |
 
-574 members, ~185 MB of content: `./bin`, `./lib`, `./share`, `./etc`.
+Notes:
 
-## 3. What the application partition contains
+- `os.bin` starts with the same magic + a count of `3`, so the format is recursive. The kernel
+  uImage appears at `0x08464C39` (`+0xA00` into `os.bin`):
+  `Linux-3.14.57`, load `0x80008000`, ARM, type 2 (kernel).
+- `svp.bin` is what earlier notes called "the application partition" — the `carve.py` extraction
+  of `0x200000` walked **svp.bin**, not `os.bin`. It is the userspace filesystem
+  (`bin/`, `lib/`, `share/`, `etc/`).
+- **Whole-file MD5**: `c7d9bd20d4eaa929d91e4dcbe75bfba3` = exactly the value in the shipped
+  `.md5` sidecar. So the sidecar hash covers the **entire `.bin`**, not a component.
+- The `.md5` sidecar additionally lists `VERSION:` / `ROLL_BACK_NO:` pairs per component —
+  the same strings the unit shows on its Version information screen.
+
+## 2. Component extraction recipes
+
+All components are plain gzip (except `radio.bin` and `os.bin`), so no decryption is involved.
+
+```python
+# svp.bin (userspace) — what tools/desay/carve.py does
+start = 0x00200000
+# app-pkg.bin
+start = 0x051EC7FB
+# wrap the file in a seekable slice, gzip.GzipFile(fileobj=slice), tarfile.open(mode='r|')
+```
+
+`radio.bin` is a flat firmware image (401,200 bytes, non-gzip) and `os.bin` needs its own record
+table parsed before extracting its three sub-components.
+
+## 3. What `svp.bin` contains (574 members)
 
 - **Services (Desay "SVP" framework):** `exlapservice`, `ilmservice`, `appmgr`, `devicemgr`,
   `btservice`, `tunerservice`, `mediaservice`, `cameraservice`, `powerctrl`, `procguard`,
@@ -61,10 +66,10 @@ No decryption is involved — the application partition is readable.
 - **Projection:** `carplayservice` + `libcarplay.so`, `carlifeservice` + `libcarlife*.so` +
   Baidu `share/CarLife/{bdim,bdsc}`, `mirrorlinkservice` + `libmirrorlink.so`.
 - **NOT present:** any `aap_*` symbol, Android Auto binary, or head-unit certificate.
-  Confirmed by full member inventory — see `docs/evidence/desay-app-partition-filelist.txt`.
+  Confirmed by full member inventory — `docs/evidence/desay-app-partition-filelist.txt`.
 - **UI:** Kanzi (`libUICore-kanzi.so`, `libuifw-kanzi.so`, `libGeneralCtrls-kanzi.so`) with
   resource bundles `share/ui/<Brand>_G5_*.kzb` (24 files: Statusbar, Home, Vpanel, Btphone,
-  KeyBoard, Setting, Media list, Logo, …). In the analysed build every bundle is `Mazda_G5_*`.
+  KeyBoard, Setting, Media list, Logo, …). In this build every bundle is `Mazda_G5_*`.
 - **Brand assets:** `share/CarPlay/{VW,DesaySV,Mazda}icon_{104,120,180,256}.png`.
   No Skoda asset anywhere.
 - **Fonts:** `share/fonts/FZHT_GB18030-{Regular,Light}.ttf` (12 MB each).
@@ -104,14 +109,20 @@ CheckRowChecksum                     "ERROR: Rollback checksum, will update all"
 "OS / SVP / APP / RADIO rollback num:%d"
 ```
 
-plus component version strings (`UBOOT_VER`, `UIMAGE_VER`, `VIPAP_VER`, `VIPBL_VER`,
-`BT_VER`). Interpretation: the unit validates the package (md5-based APIs), enforces
-anti-downgrade counters stored in MCU EEPROM ("MU"), and copies to eMMC from a privileged
-service.
+plus component version strings (`UBOOT_VER`, `UIMAGE_VER`, `VIPAP_VER`, `VIPBL_VER`, `BT_VER`).
+Interpretation: the unit validates the package (md5-based APIs, and the whole-file MD5 is known
+to us), enforces anti-downgrade counters stored in MCU EEPROM ("MU"), and copies to eMMC from a
+privileged service. The update is user-triggered from the unit's own System Information screen
+("Update software").
 
-**Open question:** whether `package_is_valid` is a plain MD5 compare (which we could
-recompute, exactly like the shipped `.md5` sidecar) or a cryptographic signature. Answering it
-decides whether a modified `.bin` could ever be flashed. See `ROADMAP.md`.
+**Open questions**
+- Is `svapi_vw_upgrade_package_is_valid` merely `md5(file) == sidecar` (then a repack is
+  feasible with a recomputed md5 + untouched rollback numbers), or is there a signature?
+- Where exactly is the rollback counter stored, and does `CheckRollbackValue` compare only
+  `ROLL_BACK_NO` values from the sidecar?
+- What are the on-screen checksums `0xc473` (radio SW) and `0xda8c` (bootloader)? Verified as
+  *not* a stored header field; common CRC16 variants over the obvious windows did not match yet.
+  Reproducing them would tell us what else a modified package must satisfy.
 
 ## 5. Rollback safety notes
 
