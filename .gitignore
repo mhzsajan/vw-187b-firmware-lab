@@ -1,0 +1,36 @@
+# Firmware binaries are never committed to this repository.
+*.bin
+*.bin.md5
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.rar
+*.7z
+*.img
+*.kzb
+*.iso
+
+# but allow the small text artefacts / derived images under docs
+!docs/**/*.png
+!docs/**/*.md
+!docs/**/*.txt
+
+# OS / editor noise
+Thumbs.db
+desktop.ini
+.DS_Store
+*.swp
+.vscode/
+.idea/
+
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# local scratch output (extractions, probe logs)
+/out/
+/scratch/
+*.extracted/

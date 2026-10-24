@@ -1,0 +1,48 @@
+﻿updateservice: 843809 bytes
+libupdate.so: 820118 bytes
+logo.kzb: 1521446 bytes
+vwicon.png: 27087 bytes
+
+=== logo.kzb header
+2e 4b 5a 42 00 17 37 26 00 00 00 54 00 00 00 6b 00 02 00 08 00 04 01 02 00 00 00 01 00 00 00 01 00 00 00 24 e2 b3 b6 e6 e1 b4 e6 b7 ad b0 b2 e4 e4 ad b4 b5 b7 b3 ad b9 b0 e2 b8 ad e2 e3 e2 b6 e3 b0 b0 b8 b3 b2 e1 b1 00 00 00 28 00 04 6c 6f 67 6f 00 00 00 00 8f a0 00 00 03 2e 00 00 21 f0
+b'.KZB\x00\x177&\x00\x00\x00T\x00\x00\x00k\x00\x02\x00\x08\x00\x04\x01\x02\x00\x00\x00\x01\x00\x00\x00\x01\x00\x00\x00$\xe2\xb3\xb6\xe6\xe1\xb4\xe6\xb7\xad\xb0\xb2\xe4\xe4\xad\xb4\xb5\xb7\xb3\xad\xb9\xb0\xe2\xb8\xad\xe2\xe3\xe2\xb6\xe3\xb0\xb0\xb8\xb3\xb2\xe1\xb1\x00\x00\x00(\x00\x04logo\x00\x00\x00\x00\x8f\xa0\x00\x00\x03.\x00\x00!\xf0'
+  find png: 91083
+  find raw?: -1
+  find kzb: 1
+  find gzip: 507292
+  find zip: -1
+  mid entropy approx unique bytes: 256
+  ascii in first 200KB: ['PropertyTypeLibrary', 'PointLight[2]', 'DirectionalLight[1]', 'TextureCube', 'CubemapColor', 'ShadowBias', 'ShadowIntensity', 'State', 'Animation Clips', 'Animation Clip', 'Screens', 'Screen', 'Image Layer', 'Screen', 'Material Types', 'FontDefault', 'Phong', 'PhongCube', 'PhongSkinned', 'PhongTextured']
+
+=== libupdate.so: keyword counts {b'sign_': 4, b'version': 13, b'verify': 2, b'package': 1}
+    vRNS_7ArchiveERSbIT_T0_T1_E._ZNSs6resizeEjc._ZN2SF7Archive24verifyAgainstArchiveSizeEj._ZN2SF7IStream4readEPcj._ZNSs6appendEPK
+    gs: ....]...US_SUCCESS..US_FAIL_PKG_NOT_EXIST...US_FAIL_PKG_INVALID.US_FAIL_COPY....US_FAIL_COPY_CHECK..US_FAIL_SET_FLAG....US_
+    essionERKT0_._ZNSs6appendEPKcj@@GLIBCXX_3.4._ZN2SF7Archive24verifyAgainstArchiveSizeEj._ZN3RCF10StubAccess6invokeI9RcfClientI1
+
+=== updateservice: keyword counts {b'version': 9, b'rollback': 22, b'package': 7, b'md5': 2, b'verify': 2, b'sign_': 4}
+    grade_init.svapi_upgrade_set_flag.libsvapi_vw.so.1.svapi_vw_rollback_get.svapi_vw_upgrade_copy_to_emmc.svapi_vw_rollback_set.sva
+    vapi_vw_rollback_get.svapi_vw_upgrade_copy_to_emmc.svapi_vw_rollback_set.svapi_vw_upgrade_package_is_valid.svapi_vw_read_pkg_md5
+    ack_set.svapi_vw_upgrade_package_is_valid.svapi_vw_read_pkg_md5_info.libRCF.so.2.2.0.0._ZNSt8_Rb_treeISsSt4pairIKSsN5boost8
+    tocolIN4mpl_4int_ILi4EEEE2InrsIPSsEERS5_RT_._ZN2SF7Archive24verifyAgainstArchiveSizeEj._ZNSt8_Rb_treeISsSt4pairIKSsN5boost8wea
+    FactoryStatusEEERS0_RKT_._ZN23SVPUpdateService_Server18CheckRollbackValueEv._ZN5boost10shared_ptrIN9SVPUpdate10UpdateTypeEED2Ev.
+    RN3RCF10RcfSessionERKT0_._ZN23SVPUpdateService_Server23GetSWRollbackNoFromFileEN9SVPUpdate10FolderTypeE._ZN9RcfClientI18ISVP_Upd
+    8_Rb_tree_node_baseSF_OT_._ZN23SVPUpdateService_Server18SaveRollBackNoToMUEv._ZN3RCF10StubAccess6invokeI9RcfClientI18ISVP_Update
+    ientI18ISVP_UpdateServiceE._ZN23SVPUpdateService_Server23GetRollBackPermitStatusEv._ZN9RcfClientI18ISVP_UpdateServiceE6invokeIN4
+    dateStatusEEE...ExitInstance....ResetFactorySettingProc.SaveRollBackNoToMU......................FileCopyProc....RmtUpdateExcepti
+    ...............FileCopyProc....RmtUpdateExceptionProc..GetSWRollbackNoFromFile.getSerializerPolymorphic........isDerived.......g
+    eService..ISVP_UpdateListener.(%u|0x%08lX) [%s] ERROR: Read rollback number value error!!.....(%u|0x%08lX) [%s] ERROR: Copying[0
+    ceptionProc() - Copy finish!.....(%u|0x%08lX) [%s] INFO: OS rollback num:%d......(%u|0x%08lX) [%s] INFO: SVP rollback num:%d....
+    ] INFO: OS rollback num:%d......(%u|0x%08lX) [%s] INFO: SVP rollback num:%d.....(%u|0x%08lX) [%s] INFO: APP rollback num:%d.....
+    ] INFO: SVP rollback num:%d.....(%u|0x%08lX) [%s] INFO: APP rollback num:%d.....(%u|0x%08lX) [%s] INFO: RADIO rollback num:%d...
+    INFO: APP rollback num:%d.....(%u|0x%08lX) [%s] INFO: RADIO rollback num:%d...(%u|0x%08lX) [%s] ERROR: Rollback checksum, will u
+    [%s] INFO: RADIO rollback num:%d...(%u|0x%08lX) [%s] ERROR: Rollback checksum, will update all.....(%u|0x%08lX) [%s] INFO: Get[0
+    ngProcEPvE12__FUNCTION__._ZZN23SVPUpdateService_Server18SaveRollBackNoToMUEvE12__FUNCTION__.CSWTCH.858._ZZN23SVPUpdateService_Se
+    nProcEPvE12__FUNCTION__._ZZN23SVPUpdateService_Server23GetSWRollbackNoFromFileEN9SVPUpdate10FolderTypeEE12__FUNCTION__._ZZN2SF8R
+    T_._ZN3RCF5ErrorC2EiRKSs._ZN23SVPUpdateService_Server18CheckRollbackValueEv._ZN5boost10shared_ptrIN9SVPUpdate10UpdateTypeEED2Ev.
+    RN3RCF10RcfSessionERKT0_._ZN23SVPUpdateService_Server23GetSWRollbackNoFromFileEN9SVPUpdate10FolderTypeE._ZTISs._ZN9RcfClientI18I
+    PreInstallD1Ev._ZN3RCF9RcfServerC1ERKNS_8EndpointE.svapi_vw_rollback_get._ZN5boost10shared_ptrIiEC2IiNS_3_bi6bind_tIvNS_4_mfi3mf
+    4pairIPvPKSt9type_infoERj._ZN23SVPUpdateService_Server18SaveRollBackNoToMUEv._ZN3RCF10StubAccess6invokeI9RcfClientI18ISVP_Update
+    tocolIN4mpl_4int_ILi5EEEE3OutlsIhEERS5_RKT_._ZN2SF7Archive24verifyAgainstArchiveSizeEj._ZN3RCF24SerializationProtocolOut5write
+    ientI18ISVP_UpdateServiceE._ZN23SVPUpdateService_Server23GetRollBackPermitStatusEv._ZNK2SF7Archive7isWriteEv._ZN9RcfClientI18ISV
+    ice_ServerEEvRKT_RN3RCF10RcfSessionERKT0_.svapi_vw_read_pkg_md5_info._ZN3RCF16VariableArgMacroINS_14LogVarsFunctorEED2Ev._Z
+    heckRowChecksumEPKhj._ZTISt9exception@@GLIBCXX_3.4.svapi_vw_rollback_set._ZN3RCF10StubAccess6invokeI9RcfClientI18ISVP_UpdateServ

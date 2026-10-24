@@ -1,0 +1,1134 @@
+﻿########## PACK 5314
+members=6477 total_bytes=228.8MB
+top-level entries: {'usr': 3230, 'opt': 3001, 'etc': 120, 'lib': 96, 'var': 18, 'mirrorlink': 3, 'script': 3, 'bt_ac_firm': 2, 'config.txt': 1, 'kernelImage': 1, 'u-boot.bin': 1, 'vipImage.bin': 1}
+biggest files:
+     18,262,608  usr/lib/icudt48l.dat
+     11,905,712  opt/gresfiles/FZHT_GB18030.ttf
+      9,873,040  usr/local/qte4.7.4/lib/libQtGui.so.4.7.4
+      9,391,476  opt/hmi
+      7,136,424  usr/lib/gstreamer-0.10/libgstffmpeg.so
+      6,223,756  usr/lib/libicudata.so.52.1
+      2,977,544  kernelImage
+      2,916,012  usr/local/qte4.7.4/lib/libQtCore.so.4.7.4
+      2,539,068  usr/lib/libCLC.so
+      1,925,296  opt/memtool
+      1,730,704  usr/lib/libicui18n.so.52.1
+      1,724,352  opt/AndroidAuto/bin/aap_service
+      1,536,000  opt/gresfiles/img_black_and_white_grid_ovg.bin
+      1,536,000  opt/gresfiles/img_fish_ovg.bin
+      1,440,100  opt/AndroidAuto/lib/libcrypto.so.1.0.0
+      1,438,960  opt/lib/libximage.so.1.0.0
+      1,266,535  opt/lib/mirrorlink/libmlc_iface.so
+      1,250,544  bt_ac_firm/20160708_UGZZC-X501A_C180_bt_ac_firm.bin
+      1,223,540  usr/lib/librace_iface.so
+      1,222,252  usr/lib/libicuuc.so.52.1
+      1,194,888  lib/libcrypto.so.0.9.8
+      1,163,520  lib/libc-2.13.so
+      1,155,120  usr/lib/libgio-2.0.so
+      1,155,120  usr/lib/libgio-2.0.so.0.3600.0
+      1,126,344  usr/lib/libxml2.so.2.6.28
+name-pattern matches (503):
+    etc/aap_dev_hu_cert.date.sign
+    etc/aap_dev_hu_priv_key.key
+    etc/aap_dev_root_cert.ca.pem
+    etc/aap_system_attributes.xml
+    opt/AndroidAuto/bin/aapsdk_interface_test
+    opt/AndroidAuto/bin/aapsdk_interface_test_standalone
+    opt/AndroidAuto/bin/AAP_Application
+    opt/AndroidAuto/bin/aap_service
+    opt/AndroidAuto/bin/AAP_TestApp
+    opt/AndroidAuto/lib/libaap_adplayer.so
+    opt/AndroidAuto/lib/libaap_adrecorder.so
+    opt/AndroidAuto/lib/libaap_interface.so
+    opt/AndroidAuto/lib/libaap_vdplayer.so
+    opt/data/carplay/Skoda_Carplay_oemIcon_V1.png
+    opt/data/carplay/VW_CarPlay_oemIcon_V1.png
+    opt/data/sysupdate_source/VWThesis MQB Light.ttf
+    opt/data/sysupdate_source/VWThesis MQB Regular.ttf
+    opt/gresfiles/image_btn_popup_climate_seatheater_left_btn_down_off_bg_lc_disable_ovg.bin
+    opt/gresfiles/image_btn_popup_climate_seatheater_left_btn_down_off_bg_lc_normal_ovg.bin
+    opt/gresfiles/image_btn_popup_climate_seatheater_left_btn_down_off_bg_ll_disable_ovg.bin
+    opt/gresfiles/image_btn_popup_climate_seatheater_left_btn_down_off_bg_ll_normal_ovg.bin
+    opt/gresfiles/image_btn_popup_climate_seatheater_left_btn_down_off_bg_lr_disable_ovg.bin
+    opt/gresfiles/image_btn_popup_climate_seatheater_left_btn_down_off_bg_lr_naromal_ovg.bin
+    opt/gresfiles/image_btn_popup_climate_seatheater_left_btn_down_off_bg_ml_disable_ovg.bin
+    opt/gresfiles/image_btn_popup_climate_seatheater_left_btn_down_off_bg_ml_normal_ovg.bin
+    opt/gresfiles/image_btn_popup_climate_seatheater_left_btn_down_off_bg_mr_disable_ovg.bin
+    opt/gresfiles/image_btn_popup_climate_seatheater_left_btn_down_off_bg_mr_normal_ovg.bin
+    opt/gresfiles/image_btn_popup_climate_seatheater_left_btn_down_off_bg_uc_disable_ovg.bin
+    opt/gresfiles/image_btn_popup_climate_seatheater_left_btn_down_off_bg_uc_normal_ovg.bin
+    opt/gresfiles/image_btn_popup_climate_seatheater_left_btn_down_off_bg_ul_disable_ovg.bin
+    opt/gresfiles/image_btn_popup_climate_seatheater_left_btn_down_off_bg_ul_normal_ovg.bin
+    opt/gresfiles/image_btn_popup_climate_seatheater_left_btn_down_off_bg_ur_disable_ovg.bin
+    opt/gresfiles/image_btn_popup_climate_seatheater_left_btn_down_off_bg_ur_normal_ovg.bin
+    opt/gresfiles/image_button_car_setup_seats_icon_d_ovg.bin
+    opt/gresfiles/image_vw270_1la_pureair_car_ovg.bin
+    opt/gresfiles/image_vw276_1cn_k_pureair_car_ovg.bin
+    opt/gresfiles/image_vw276_1cn_k_pureair_car_step1_ovg.bin
+    opt/gresfiles/image_vw276_1cn_k_pureair_car_step2_ovg.bin
+    opt/gresfiles/image_vw276_1cn_k_pureair_car_step3_ovg.bin
+    opt/gresfiles/image_vw276_1cn_k_pureair_car_step4_ovg.bin
+    opt/gresfiles/image_vw276_1cn_k_pureair_car_step5_ovg.bin
+    opt/gresfiles/image_vw276_1cn_k_pureair_car_step6_ovg.bin
+    opt/gresfiles/image_vw276_1cn_k_pureair_car_step7_ovg.bin
+    opt/gresfiles/image_vw276_1cn_k_pureair_car_step8_ovg.bin
+    opt/gresfiles/image_vw276_1cn_k_pureair_car_step9_ovg.bin
+    opt/gresfiles/image_vw313_0cs_k_pureair_car_ovg.bin
+    opt/gresfiles/image_vw313_0cs_k_pureair_car_step1_ovg.bin
+    opt/gresfiles/image_vw313_0cs_k_pureair_car_step2_ovg.bin
+    opt/gresfiles/image_vw313_0cs_k_pureair_car_step3_ovg.bin
+    opt/gresfiles/image_vw313_0cs_k_pureair_car_step4_ovg.bin
+    opt/gresfiles/image_vw313_0cs_k_pureair_car_step5_ovg.bin
+    opt/gresfiles/image_vw313_0cs_k_pureair_car_step6_ovg.bin
+    opt/gresfiles/image_vw313_0cs_k_pureair_car_step7_ovg.bin
+    opt/gresfiles/image_vw313_0cs_k_pureair_car_step8_ovg.bin
+    opt/gresfiles/image_vw313_0cs_k_pureair_car_step9_ovg.bin
+    opt/gresfiles/image_vw326_0cs_kl_pureair_car_ovg.bin
+    opt/gresfiles/image_vw326_0cs_kl_pureair_car_step1_ovg.bin
+    opt/gresfiles/image_vw326_0cs_kl_pureair_car_step2_ovg.bin
+    opt/gresfiles/image_vw326_0cs_kl_pureair_car_step3_ovg.bin
+    opt/gresfiles/image_vw326_0cs_kl_pureair_car_step4_ovg.bin
+    opt/gresfiles/image_vw326_0cs_kl_pureair_car_step5_ovg.bin
+    opt/gresfiles/image_vw326_0cs_kl_pureair_car_step6_ovg.bin
+    opt/gresfiles/image_vw326_0cs_kl_pureair_car_step7_ovg.bin
+    opt/gresfiles/image_vw326_0cs_kl_pureair_car_step8_ovg.bin
+    opt/gresfiles/image_vw326_0cs_kl_pureair_car_step9_ovg.bin
+    opt/gresfiles/image_vw370_2cn_k_pureair_car_ovg.bin
+    opt/gresfiles/image_vw370_2cn_k_pureair_car_step1_ovg.bin
+    opt/gresfiles/image_vw370_2cn_k_pureair_car_step2_ovg.bin
+    opt/gresfiles/image_vw370_2cn_k_pureair_car_step3_ovg.bin
+    opt/gresfiles/image_vw370_2cn_k_pureair_car_step4_ovg.bin
+    opt/gresfiles/image_vw370_2cn_k_pureair_car_step5_ovg.bin
+    opt/gresfiles/image_vw370_2cn_k_pureair_car_step6_ovg.bin
+    opt/gresfiles/image_vw370_2cn_k_pureair_car_step7_ovg.bin
+    opt/gresfiles/image_vw370_2cn_k_pureair_car_step8_ovg.bin
+    opt/gresfiles/image_vw370_2cn_k_pureair_car_step9_ovg.bin
+    opt/gresfiles/image_vw371_0me_k_pureair_car_ovg.bin
+    opt/gresfiles/image_vw371_0me_k_pureair_car_step1_ovg.bin
+    opt/gresfiles/image_vw371_0me_k_pureair_car_step2_ovg.bin
+    opt/gresfiles/image_vw371_0me_k_pureair_car_step3_ovg.bin
+    opt/gresfiles/image_vw371_0me_k_pureair_car_step4_ovg.bin
+    opt/gresfiles/image_vw371_0me_k_pureair_car_step5_ovg.bin
+    opt/gresfiles/image_vw371_0me_k_pureair_car_step6_ovg.bin
+    opt/gresfiles/image_vw371_0me_k_pureair_car_step7_ovg.bin
+    opt/gresfiles/image_vw371_0me_k_pureair_car_step8_ovg.bin
+    opt/gresfiles/image_vw371_0me_k_pureair_car_step9_ovg.bin
+    opt/gresfiles/image_vw372_0me_k_pureair_car_ovg.bin
+    opt/gresfiles/image_vw372_0me_k_pureair_car_step1_ovg.bin
+    opt/gresfiles/image_vw372_0me_k_pureair_car_step2_ovg.bin
+    opt/gresfiles/image_vw372_0me_k_pureair_car_step3_ovg.bin
+    opt/gresfiles/image_vw372_0me_k_pureair_car_step4_ovg.bin
+    opt/gresfiles/image_vw372_0me_k_pureair_car_step5_ovg.bin
+    opt/gresfiles/image_vw372_0me_k_pureair_car_step6_ovg.bin
+    opt/gresfiles/image_vw372_0me_k_pureair_car_step7_ovg.bin
+    opt/gresfiles/image_vw372_0me_k_pureair_car_step8_ovg.bin
+    opt/gresfiles/image_vw372_0me_k_pureair_car_step9_ovg.bin
+    opt/gresfiles/image_vw378_0cs_k_pureair_car_ovg.bin
+    opt/gresfiles/image_vw378_0cs_k_pureair_car_step1_ovg.bin
+    opt/gresfiles/image_vw378_0cs_k_pureair_car_step2_ovg.bin
+    opt/gresfiles/image_vw378_0cs_k_pureair_car_step3_ovg.bin
+    opt/gresfiles/image_vw378_0cs_k_pureair_car_step4_ovg.bin
+    opt/gresfiles/image_vw378_0cs_k_pureair_car_step5_ovg.bin
+    opt/gresfiles/image_vw378_0cs_k_pureair_car_step6_ovg.bin
+    opt/gresfiles/image_vw378_0cs_k_pureair_car_step7_ovg.bin
+    opt/gresfiles/image_vw378_0cs_k_pureair_car_step8_ovg.bin
+    opt/gresfiles/image_vw378_0cs_k_pureair_car_step9_ovg.bin
+    opt/gresfiles/image_vw481_0cn_kl_pureair_car_ovg.bin
+    opt/gresfiles/image_vw481_0cn_kl_pureair_car_step1_ovg.bin
+    opt/gresfiles/image_vw481_0cn_kl_pureair_car_step2_ovg.bin
+    opt/gresfiles/image_vw481_0cn_kl_pureair_car_step3_ovg.bin
+    opt/gresfiles/image_vw481_0cn_kl_pureair_car_step4_ovg.bin
+    opt/gresfiles/image_vw481_0cn_kl_pureair_car_step5_ovg.bin
+    opt/gresfiles/image_vw481_0cn_kl_pureair_car_step6_ovg.bin
+    opt/gresfiles/image_vw481_0cn_kl_pureair_car_step7_ovg.bin
+    opt/gresfiles/image_vw481_0cn_kl_pureair_car_step8_ovg.bin
+    opt/gresfiles/image_vw481_0cn_kl_pureair_car_step9_ovg.bin
+    opt/gresfiles/img_btn_car_factoryset_seats_icon_glow_ovg.bin
+    opt/gresfiles/img_btn_car_factoryset_seats_icon_ovg.bin
+    opt/gresfiles/img_btn_popup_climate_seatheater_left_btn_down_off_states_d_ovg.bin
+    opt/gresfiles/img_btn_popup_climate_seatheater_left_btn_down_off_states_n_ovg.bin
+    opt/gresfiles/img_btn_popup_climate_seatheater_left_btn_down_off_states_p_glow_ovg.bin
+media members: 52
+        4,845  opt/data/carplay/Skoda_Carplay_oemIcon_V1.png
+        5,266  opt/data/carplay/VW_CarPlay_oemIcon_V1.png
+      148,189  opt/gresfiles/Startscreens_ASIA/Startscreen_Alltrack.png
+      161,388  opt/gresfiles/Startscreens_ASIA/Startscreen_Beats_Audio.png
+      158,747  opt/gresfiles/Startscreens_ASIA/Startscreen_Blue_Motion.png
+      145,654  opt/gresfiles/Startscreens_ASIA/Startscreen_Dynaudio.png
+      153,603  opt/gresfiles/Startscreens_ASIA/Startscreen_E_Golf.png
+      143,103  opt/gresfiles/Startscreens_ASIA/Startscreen_GTD.png
+      157,606  opt/gresfiles/Startscreens_ASIA/Startscreen_GTE.png
+      146,956  opt/gresfiles/Startscreens_ASIA/Startscreen_GTI.png
+      152,605  opt/gresfiles/Startscreens_ASIA/Startscreen_Normal.png
+      151,239  opt/gresfiles/Startscreens_ASIA/Startscreen_R.png
+      151,253  opt/gresfiles/Startscreens_ASIA/Startscreen_R_Line.png
+      157,282  opt/gresfiles/Startscreens_ASIA/Startscreen_Twin_Drive.png
+      140,788  opt/gresfiles/Startscreens_EU/Startscreen_Alltrack.png
+      152,916  opt/gresfiles/Startscreens_EU/Startscreen_Beats_Audio.png
+      151,043  opt/gresfiles/Startscreens_EU/Startscreen_Blue_Motion.png
+      138,125  opt/gresfiles/Startscreens_EU/Startscreen_Dynaudio.png
+      145,861  opt/gresfiles/Startscreens_EU/Startscreen_E_Golf.png
+      135,854  opt/gresfiles/Startscreens_EU/Startscreen_GTD.png
+      149,887  opt/gresfiles/Startscreens_EU/Startscreen_GTE.png
+      139,559  opt/gresfiles/Startscreens_EU/Startscreen_GTI.png
+      145,203  opt/gresfiles/Startscreens_EU/Startscreen_Normal.png
+      143,639  opt/gresfiles/Startscreens_EU/Startscreen_R.png
+      143,801  opt/gresfiles/Startscreens_EU/Startscreen_R_Line.png
+      149,808  opt/gresfiles/Startscreens_EU/Startscreen_Twin_Drive.png
+      152,053  opt/gresfiles/Startscreens_NAR/Startscreen_Alltrack.png
+      165,300  opt/gresfiles/Startscreens_NAR/Startscreen_Beats_Audio.png
+      162,627  opt/gresfiles/Startscreens_NAR/Startscreen_Blue_Motion.png
+      149,349  opt/gresfiles/Startscreens_NAR/Startscreen_Dynaudio.png
+      157,336  opt/gresfiles/Startscreens_NAR/Startscreen_E_Golf.png
+      156,231  opt/gresfiles/Startscreens_NAR/Startscreen_Family.png
+      146,842  opt/gresfiles/Startscreens_NAR/Startscreen_GTD.png
+      161,393  opt/gresfiles/Startscreens_NAR/Startscreen_GTE.png
+      150,762  opt/gresfiles/Startscreens_NAR/Startscreen_GTI.png
+      156,231  opt/gresfiles/Startscreens_NAR/Startscreen_Normal.png
+      155,272  opt/gresfiles/Startscreens_NAR/Startscreen_R.png
+      155,145  opt/gresfiles/Startscreens_NAR/Startscreen_R_Line.png
+      161,166  opt/gresfiles/Startscreens_NAR/Startscreen_Twin_Drive.png
+      148,189  opt/gresfiles/Startscreen_Alltrack.png
+----- config.txt (164 bytes) -----
+kernel_update:1
+bootloader_update:1
+vip_update:1
+bt_update:1
+middleware_update:1
+[file]:[opt] 
+[file]:[etc] 
+[file]:[usr]
+[file]:[mirrorlink]
+[file]:[lib/firmware]
+
+----- end -----
+----- etc/aap_system_attributes.xml (11248 bytes) -----
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--AAP one time configuration xml for HU -->
+
+<!--NOTE: Default values and possible options are mentioned in the comments.
+
+If the application doesn't provide a tag, the respective default values will be used in the stack.
+
+All the tags are case sensitive. User should preserve the existing case.
+
+Refer the Configuration Parameters in the Appendix section of API documentation for more information. -->
+
+
+
+<aap_attributes>
+
+    <head_unit>
+
+        <!-- Default : "Generic" -->
+
+        <make>Generic</make>
+
+        <!-- Default : "Generic" -->
+
+        <model>Generic</model>
+
+        <!-- Default : "1.0" -->
+
+        <build_num>1.0</build_num>
+
+        <!-- Default : "1.0" -->
+
+        <version>1.0</version>
+
+        <!-- Default : "/etc/aap_dev_root_cert.ca.pem" -->
+
+        <root_cert_file>/etc/aap_dev_root_cert.ca.pem</root_cert_file>
+
+        <!-- Default : "/etc/aap_dev_hu_cert.date.sign" -->
+
+        <client_cert_file>/etc/aap_dev_hu_cert.date.sign</client_cert_file>
+
+        <!-- Default : "/etc/aap_dev_hu_priv_key.key" -->
+
+        <private_key_file>/etc/aap_dev_hu_priv_key.key</private_key_file>
+
+        <!-- Default display resolution. -->
+
+        <display>
+
+            <!-- Default : "1024" -->
+
+            <width>800</width>
+
+            <!-- Default : "600" -->
+
+            <height>480</height>
+
+            <!-- Pixel Aspect Ratio(PAR) is ratio of the physical pixel width over height multiplied by 10^4.
+
+                 Default : "10000" -->
+
+            <par>10000</par>
+
+        </display>
+
+        <!-- Input devices supported by HU. -->
+
+        <input_devices>
+
+            <!-- If application wants to make use of touch screen, touch screen <type> tag is mandatory to provide.
+
+Touch inputs can be provided from application or the stack can directly take the input events from the touch device.
+
+If the application wants stack to directly read from input device, it is mandatory to have <use_internally> and
+
+<path> tags.
+
+NOTE: <use_internally> and <path> tags should be used only for testing purpose. In the production release,
+
+the application has to provide the touch input events through aap_send_touch_input() API. -->
+
+            <touch_screen>
+
+                <!-- Set "TRUE" to enable. "FALSE" to disable. This field is mandatory. -->
+
+                <use_internally>FALSE</use_internally>
+
+                <!-- The below <path> tag will be considered only if <use_internally> is TRUE -->
+
+                <path>/dev/event1</path>
+
+                <!-- Default : "AAP_TOUCH_SCREEN_TYPE_CAPACITIVE". There must be
+
+                     a single entry only for this tag. This field is mandatory
+
+                     and must be the last child of touch_screen
+
+                     Other possible values: AAP_TOUCH_SCREEN_TYPE_RESISTIVE -->
+
+                <type>AAP_TOUCH_SCREEN_TYPE_CAPACITIVE</type>
+
+            </touch_screen>
+
+            <!-- Note that physical_height should be the last child of touch_pad -->
+
+            <touch_pad>
+
+                <!-- Default : "0" -->
+
+                <width>0</width>
+
+                <!-- Default : "0" -->
+
+                <height>0</height>
+
+                <!-- If touch pad will be used to control the UI -->
+
+                <control_ui>FALSE</control_ui>
+
+                <!-- Physical width of touch pad in mm -->
+
+                <physical_width>0</physical_width>
+
+                <!-- Physical height of touch pad in mm. -->
+
+                <physical_height>0</physical_height>
+
+            </touch_pad>
+
+            <!--It is mandatory for application to list all the supported keycodes. No default is assumed by the stack.
+
+Refer AAP_KeyCodes enum in API documentation to find the complete list of possible values.
+
+Few important key codes are listed below. Comment/remove if not required. -->
+
+            <key_codes>
+
+                <value>AAP_KEYCODE_SEARCH</value>
+
+                <value>AAP_KEYCODE_MEDIA_PLAY</value>
+
+                <value>AAP_KEYCODE_MEDIA_PAUSE</value>
+
+                <value>AAP_KEYCODE_MEDIA_PLAY_PAUSE</value>
+
+                <value>AAP_KEYCODE_MEDIA_PREVIOUS</value>
+
+                <value>AAP_KEYCODE_MEDIA_NEXT</value>
+
+                <value>AAP_KEYCODE_MEDIA_REWIND</value>
+
+                <value>AAP_KEYCODE_MEDIA_FAST_FORWARD</value>
+
+                <value>AAP_KEYCODE_MUSIC</value>
+
+                <value>AAP_KEYCODE_MUTE</value>
+
+                <value>AAP_KEYCODE_CALL</value>
+
+                <value>AAP_KEYCODE_ENDCALL</value>
+
+                <value>AAP_KEYCODE_NAVIGATION</value>
+
+                <value>AAP_KEYCODE_TEL</value>
+
+                <value>AAP_KEYCODE_MEDIA</value>
+
+                <value>AAP_KEYCODE_MENU</value>
+
+                <value>AAP_KEYCODE_BACK</value>
+
+                <value>AAP_KEYCODE_HOME</value>
+
+                <value>AAP_KEYCODE_CAMERA</value>
+
+                <value>AAP_KEYCODE_NOTIFICATION</value>
+
+                <value>AAP_KEYCODE_CALCULATOR</value>
+
+                <value>AAP_KEYCODE_ROTARY_CONTROLLER</value>
+
+                <value>AAP_KEYCODE_DPAD_UP</value>
+
+                <value>AAP_KEYCODE_DPAD_DOWN</value>
+
+                <value>AAP_KEYCODE_DPAD_LEFT</value>
+
+                <value>AAP_KEYCODE_DPAD_RIGHT</value>
+
+                <value>AAP_KEYCODE_DPAD_CENTER</value>
+
+                <value>AAP_KEYCODE_ENTER</value>
+
+            </key_codes>
+
+        </input_devices>
+
+    </head_unit>
+
+    <application>
+
+        <video>
+
+            <!--List all the supported resolutions in the order of preference!
+
+Default: "800x480", "1280x720", "1920x1080". It is mandatory to have "800x480"
+
+Note that the <density> tag has to be followed by <value> tag -->
+
+            <resolution>
+
+                <value>1920x1080</value>
+
+                <density>320</density>
+
+            </resolution>
+
+            <resolution>
+
+                <value>1280x720</value>
+
+                <density>240</density>
+
+            </resolution>
+
+            <resol
+----- end -----
+----- etc/rc.d/rc.local (1490 bytes) -----
+#!/bin/sh
+#
+# This script will be executed *after* all the other init scripts.
+# You can put your own initialization stuff in here
+if [ -x "/usr/bin/rpm" -a -e "/tmp/ltib" ]
+then
+    echo "rebuilding rpm database"
+    rm -rf /tmp/ltib
+    rpm --rebuilddb
+fi
+
+# fix up permissions
+#if [ -d /home/user ]
+#then
+#    chown -R user.user /home/user
+#fi
+
+# Add nodes when running under the hypervisor and static devices
+if [ -r /sys/class/misc/fsl-hv/dev -a ! -r /dev/fsl-hv ]
+then
+   echo "creating hypervisor nodes"
+   DEVID=`cat /sys/class/misc/fsl-hv/dev`
+   if [ -n "$DEVID" ]
+   then
+       MAJOR="${DEVID%:*}"
+       MINOR="${DEVID##*:}"
+
+       if [ \( "$MAJOR" -gt 0 \) -a \( "$MINOR" -gt 0 \) ]
+       then
+	   rm -f /dev/fsl-hv
+	   mknod /dev/fsl-hv c $MAJOR $MINOR
+       fi
+   fi
+   for i in 0 1 2 3 4 5 6 7
+   do
+       mknod /dev/hvc$i c 229 $i
+   done
+fi
+
+# add the fm device nodes
+if [ -n "$(cat /proc/devices | grep fm | sed 's/\([0-9]*\).*/\1/')" -a ! -r /dev/fm0 ]
+then
+    echo "creating fman device nodes"
+    cd /usr/share/doc/fmd-uspace-01.01/test/
+    sh fm_dev_create
+    cd -
+fi
+
+for i in 0 1 2; do
+    if [ -e /sys/class/graphics/fb$i ]; then
+        chmod 0666 /sys/class/graphics/fb$i/pan
+    fi
+done
+
+# assign ip 127.0.0.1 to loopback interface
+ifconfig lo 127.0.0.1
+
+# load cdc ncm driver at bootup
+#modprobe cdc_ncm
+
+# run rc.ts init script to calibrate touch screen
+. /etc/rc.d/rc.ts
+
+# Start Mirrorlink Qt demo application
+#cd /mirrorlink
+#./QtTestMlcIface -qws
+
+----- end -----
+----- etc/rc.d/rcS (7355 bytes) -----
+#!/bin/sh
+echo rcS Start!
+# function start
+pss_handle_with_recovery()
+{
+	# Step 1: attach
+	ubiattach /dev/ubi_ctrl -d 1 -m 3
+	error_code=$?
+
+	if [ $error_code != 0 ]; then
+		echo "ubi mtd3 attach error! error code=$error_code"
+	#	echo "ubi mtd2 attach error! error code=$error_code">>/error/partion_errlog
+		sync
+	fi
+
+	# Step 2: attach
+	ubiattach /dev/ubi_ctrl -d 2 -m 4
+	error_code=$?
+
+	if [ $error_code != 0 ]; then
+		echo "ubi mtd4 attach error! error code=$error_code"
+	#	echo "ubi mtd3 attach error! error code=$error_code">>/error/partion_errlog
+		sync
+	fi
+
+	# Step 3: Mount Pss1
+	mount -t ubifs -o sync ubi1:pss1  /pss1/
+	error_code=$?
+
+	if [ $error_code != 0 ]; then
+		Pss1_1stMnt=FAIL;
+		echo "Pss1 partition 1st mount failed, errcode=$error_code"
+	#	echo "Pss1 partition 1st mount failed, errcode=$error_code">>/error/partion_errlog
+		sync
+		
+	else
+		Pss1_1stMnt=OK;
+	fi
+
+
+	# Step 4: Mount Pss2
+	mount -t ubifs -o sync ubi2:pss2  /pss2/
+	error_code=$?
+
+	if [ $error_code != 0 ]; then
+		Pss2_1stMnt=FAIL;
+		echo "Pss2 parition 1st mount failed, errcode=$error_code"
+	#	echo "Pss2 parition 1st mount failed, errcode=$error_code">>/error/partion_errlog
+		sync
+	
+	else
+		Pss2_1stMnt=OK;		
+	fi
+	
+#	Pss1_1stMnt=FAIL;
+#	Pss2_1stMnt=FAIL;
+#	echo "Pss11stMnt=$Pss1_1stMnt; Pss12ndMnt=$Pss1_2ndMnt"
+#	echo "Pss21stMnt=$Pss2_1stMnt; Pss22ndMnt=$Pss2_2ndMnt"
+#	sync
+
+	if [ "$Pss1_1stMnt" = OK ] && [ "$Pss2_1stMnt" = OK ]; then
+	
+		return 0
+	fi
+
+	if [ "$Pss1_1stMnt" = FAIL ] && [ "$Pss2_1stMnt" = FAIL ]; then
+
+		cd /opt
+		./hal_init
+		echo " both partitions mount failed!\n"
+	#	echo "both partitions mount failed!\n">>/error/partion_errlog
+		sync		
+		return 1
+	
+	fi
+
+
+	if [ "$Pss1_1stMnt" = OK ] && [ "$Pss2_1stMnt" = FAIL ] ; then
+
+		# Erase Pss2 partition and remount
+		cd /
+		umount /pss2
+		ubidetach /dev/ubi_ctrl -d 2
+	#	flash_eraseall /dev/mtd4
+		ubiformat  -y /dev/mtd4
+		ubiattach /dev/ubi_ctrl -d 2 -m 4 
+		#ubimkvol  /dev/ubi2 -N pss2 -m
+		ubimkvol /dev/ubi2 -N pss2 -s 8388608
+		mount -t ubifs -o sync ubi2:pss2 /pss2/
+		error_code=$?
+		if [ $error_code != 0 ]; then
+			Pss2_2ndMnt=FAIL;
+			echo "Pss2 parition 2nd mount failed, errcode=$error_code"
+	#		echo "Pss2 parition 2nd mount failed, errcode=$error_code">>/error/partion_errlog
+			sync
+		else
+			echo "Pss2 parition 2nd mount OK"
+			Pss2_2ndMnt=OK;
+	#		Pss2_2ndMnt=FAIL;
+			cp /pss1/* /pss2/
+			echo "Recover Pss2 from Pss1!\n"
+	#		echo "Recover Pss2 from Pss1!\n">>/error/partion_errlog
+			sync
+		fi
+
+	fi
+	
+	if [ "$Pss1_1stMnt" = FAIL ] && [ "$Pss2_1stMnt" = OK ]; then
+
+		# Erase Pss1 partition and remount
+		cd /
+		umount /pss1
+		ubidetach /dev/ubi_ctrl -d 1
+#		flash_eraseall /dev/mtd3
+		ubiformat -y /dev/mtd3
+		ubiattach /dev/ubi_ctrl -d 1 -m 3 
+		#ubimkvol  /dev/ubi1 -N pss1 -m	
+		ubimkvol /dev/ubi1 -N pss1 -s 8388608
+		mount -t ubifs -o sync ubi1:pss1  /pss1/
+		error_code=$?
+		if [ $error_code != 0 ]; then
+			Pss1_2ndMnt=FAIL;
+			echo "Pss1 partition 2nd mount failed, errcode=$error_code"
+	#		echo "Pss1 partition 2nd mount failed, errcode=$error_code">>/error/partion_errlog
+			sync
+		else
+			echo "Pss1 parition 2nd mount OK"
+			Pss1_2ndMnt=OK;	
+	#		Pss1_2ndMnt=FAIL;
+			cp /pss2/* /pss1/
+			echo "Recover Pss1 from Pss2!\n"
+	#		echo "Recover Pss1 from Pss2!\n">>/error/partion_errlog
+			sync	
+		fi
+	
+	fi
+
+	if [ "$Pss1_2ndMnt" = FAIL ] || [ "$Pss2_2ndMnt" = FAIL ]; then
+		cd /opt
+		./hal_init
+		echo "remount failed!\n"
+	#	echo "remount failed!\n">>/error/partion_errlog
+		sync		
+		return 1
+	else
+		return 0
+	fi
+	
+	
+}
+#function end
+
+mount -n -o mode=0755 -t tmpfs mdev /dev
+mknod /dev/video0 c 81 0
+mknod /dev/fb0 c 29 0
+mknod /dev/fb1 c 29 1
+mknod /dev/video17 c 81 3
+#init i2c3 dev node
+mknod /dev/i2c-3 c 89 3
+mknod -m 666 /dev/null c 1 3
+cnt=0
+while [ ! -c /dev/null ]; do
+	let "cnt += 1"
+	if [ "$cnt" -gt 3 ]; then
+		break
+	fi
+	rm -f /dev/null
+	mknod -m 666 /dev/null c 1 3
+done
+mount -n -t sysfs sys /sys
+mount -n -t proc proc /proc
+
+mount -t tmpfs -o size=5m none /tmp
+
+export LD_LIBRARY_PATH=/opt/lib:$LD_LIBRARY_PATH
+/opt/camera &
+
+echo 30000 > /proc/sys/vm/min_free_kbytes
+
+echo rcS step 2
+# load the configuration information
+cfg_services="mdev modules filesystems"
+
+export HOSTNAME="freescale"
+export NTP_SERVER=""
+export MODLIST=""
+#export RAMDIRS="/tmp /var"
+export RAMDIRS="/var"
+export TMPFS="tmpfs"
+export TMPFS_SIZE="512k"
+export READONLY_FS=""
+export BOA_ARGS=""
+export SMBD_ARGS=""
+export NMBD_ARGS=""
+export DHCP_ARG=""
+export DEPLOYMENT_STYLE="JFFS2"
+export SYSCFG_DHCPC_CMD="udhcpc -b -i "
+export DROPBEAR_ARGS=""
+
+mode=${1:-start}
+
+cfg_services=${2:-$cfg_services}
+
+# run the configured sequence
+for i in $cfg_services
+do
+    if [ -x /etc/rc.d/init.d/$i ]
+    then                                                                        
+        /etc/rc.d/init.d/$i $mode
+        echo Service "$i" started!
+    fi                                                                          
+done
+
+echo rcS step 3
+
+# run rc.local if present and executable
+if [ -x /etc/rc.d/rc.local ]
+then 
+    /etc/rc.d/rc.local $mode
+fi
+
+echo rcS step 4
+
+# added by zhang xianhong for upgrade 20131118
+echo rcS file update check start
+flag=`grep "FLAG_UPDATE" /sysupdate/flag.ini`
+echo rcS update 222
+
+pss_handle_with_recovery
+mount_status=$?
+echo mount status is: $mount_status
+
+if [ ! -f "/pss1/stdplus.ini" ] || [ ! -d "/pss1/config" ] || [ ! -f "/pss1/hmi_autotest.ini" ];
+then
+	cp -rfp /opt/stdplus.ini /opt/config /opt/hmi_autotest.ini /pss1
+	sync
+fi
+
+if [ "$flag" = "FLAG_UPDATE_HOST" ] || [ "$flag" = "FLAG_UPDATE_VIP" ] || [ "$flag" = "FLAG_UPDATE_HOST_ERROR" ];
+then
+	mount -o remount rw /
+	if [ "$flag" = "FLAG_UPDATE_HOST_ERROR" ];		
+	then
+		echo restore sysupdate app and lib
+		cd /sysupdate/backup/		
+		cp -r opt/* /opt/	
+		cp -r lib/* /opt/lib/
+		cp -r usr/lib/* /usr/lib/
+		cp -r rootfs_lib/* /lib/
+		cp -r usr/local/* /usr/local/qte4.7.4/lib/
+		sync
+	fi 
+	#insmod tiger4_knob.ko
+	#insmod tiger4_tuner.ko
+	export QTDIR=/usr/local/qte4.7.4
+	export PATH=$QTDIR/bin:$PATH
+	export LD_LIBRARY_PATH=$
+----- end -----
+----- etc/fstab (802 bytes) -----
+#
+# /etc/fstab: static file system information.
+#
+# file system   mount       type    options           dump    pass
+#/dev/root       /           ext2    rw,noauto         0       1
+proc            /proc       proc    defaults          0       0
+devpts          /dev/pts    devpts  gid=5,mode=620    0       0
+sysfs           /sys        sysfs   defaults          0       0
+usbfs        /proc/bus/usb  usbfs   defaults          0       0
+
+/dev/fd0        /mnt/floppy auto    noauto,owner      0       0
+/dev/cdrom      /mnt/cdrom  iso9660 noauto,owner,ro   0       0
+
+## other examples, uncomment to activate
+#/dev/hda2      /opt        ext2    defaults          1       2
+#/dev/hda3      swap        swap    defaults          0       0
+#none           /tmp         tmpfs   size=2M           0       0
+
+----- end -----
+----- etc/inittab (234 bytes) -----
+# see busybox-1.00rc2/examples/inittab for more examples
+::sysinit:/etc/rc.d/rcS
+::respawn:/sbin/getty -L ttymxc3 115200 vt100
+#::sysinit:/etc/rc.d/rc_gpu.S
+::ctrlaltdel:/sbin/reboot
+::shutdown:/etc/rc.d/rcS stop
+::restart:/sbin/init
+
+----- end -----
+----- etc/profile (663 bytes) -----
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:
+
+PS1='[\u@\h \W]\$ '
+
+export PATH
+
+alias ll='ls -l'
+alias la='ll -a'
+
+export PS1='\u@\h \w$ '
+export PS2='> '
+export PS3='? '
+export PS4='[$LINENO]+'
+
+export GST_PLUGIN_PATH=/usr/lib/fsl_mm_linux/lib/gstreamer-0.10
+
+export LD_LIBRARY_PATH=/usr/local/qte4.7.4/lib
+
+export TSLIB_TSDEVICE=/dev/event1
+export QWS_MOUSE_PROTO=tslib:/dev/event1
+export TSLIB_CALIBFILE=/etc/pointercal
+export TSLIB_CONFFILE=/etc/ts.conf
+export TSLIB_PLUGINDIR=/usr/lib/ts
+export TSLIB_FBDEVICE=/dev/fb0
+export TSLIB_CONSOLEDEVICE=none
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib
+export LD_LIBRARY_PATH=/opt/lib:$LD_LIBRARY_PATH
+
+
+
+
+----- end -----
+----- opt/stdplus.ini (234 bytes) -----
+[Version]
+
+AP_VER=5.4.6.6
+
+CUSTM_PQ=5314
+
+CUSTM_MQB=5314
+
+UBOOT_VER=uboot_1.4.1
+
+UIMAGE_VER=uImage_5.1.6
+
+KERNL_VER=3.0.35
+
+BT_VER = C180
+
+VIPAP_VER=5.4.6.6
+
+VIPBL_VER=2.0.3
+
+[Upgrade]
+
+PACK_TYPE=VW_PQ_PSS
+
+[CODING]
+
+BT=0
+
+CODINGS=0
+
+
+----- end -----
+!! member not found: system/script/hmi
+--- opt/hmi is 9391476 bytes; first 200 hex: 7f 45 4c 46 01 01 01 00 00 00 00 00 00 00 00 00 02 00 28 00 01 00 00 00 dc 31 02 00 34 00 00 00 14 49 8f 00 02 00 00 05 34 00 20 00 08 00 28 00 1c 00 1b 00 01 00 00 70 f8 b2 8d 00 f8 32 8e 00 f8 32 8e 00 f0 12 01 00 f0 12 01 00 04 00 00 00 04 00 00 00 06 00 00 00 34 00 00 00 34 80 00 00 34 80 00 00 00 01 00 00 00 01 00 00 05 00 00 00 04 00 00 00 03 00 00 00 34 01 00 00 34 81 00 00 34 81 00 00 13 00 00 00 13 00 00 00 04 00 00 00 01 00 00 00 01 00 00 00 00 00 00 00 00 80 00 00 00 80 00 00 ec c5 8e 00 ec c5 8e 00 05 00 00 00 00 80 00 00 01 00 00 00 ec c5 8e 00 ec c5 8f 00 ec c5 8f 00 a8 81 00 00
+system/ members: 0
+opt/ members: 3000
+            0  opt/AndroidAuto
+            0  opt/AndroidAuto/bin
+       37,308  opt/AndroidAuto/bin/aapsdk_interface_test
+       16,508  opt/AndroidAuto/bin/aapsdk_interface_test_standalone
+      100,392  opt/AndroidAuto/bin/AAP_Application
+    1,724,352  opt/AndroidAuto/bin/aap_service
+       36,728  opt/AndroidAuto/bin/AAP_TestApp
+       68,080  opt/AndroidAuto/bin/ConnectionMgr
+          391  opt/AndroidAuto/bin/readme.txt
+            0  opt/AndroidAuto/lib
+       21,905  opt/AndroidAuto/lib/libaap_adplayer.so
+       24,768  opt/AndroidAuto/lib/libaap_adrecorder.so
+      173,580  opt/AndroidAuto/lib/libaap_interface.so
+       20,194  opt/AndroidAuto/lib/libaap_vdplayer.so
+    1,440,100  opt/AndroidAuto/lib/libcrypto.so.1.0.0
+      324,504  opt/AndroidAuto/lib/libssl.so.1.0.0
+          327  opt/AndroidAuto/lib/readme.txt
+       25,104  opt/aoa_adapter
+       25,916  opt/asix.ko
+      167,748  opt/audio_proc
+      662,212  opt/bt
+       14,428  opt/camera
+      277,664  opt/carlife_daemon
+       82,812  opt/carplayd
+      105,880  opt/carplay_App
+          487  opt/carplay_testmode.sh
+       17,998  opt/cdc_ncm.ko
+          165  opt/clear-cache.sh
+            0  opt/config
+          299  opt/config/conf
+          163  opt/config/connect_mgr.conf
+          243  opt/config/pwr_agent.conf
+          203  opt/config/sysupdate.conf
+       48,444  opt/connect_mgr
+            0  opt/data
+            0  opt/data/carplay
+        4,845  opt/data/carplay/Skoda_Carplay_oemIcon_V1.png
+        5,266  opt/data/carplay/VW_CarPlay_oemIcon_V1.png
+            0  opt/data/sysupdate_source
+       67,012  opt/data/sysupdate_source/FZHT_GB18030.ttf
+          120  opt/data/sysupdate_source/image_btn_service_swdl_main_back_bg_mc_disable_ovg.bin
+          120  opt/data/sysupdate_source/image_btn_service_swdl_main_back_bg_mc_normal_ovg.bin
+        1,044  opt/data/sysupdate_source/image_btn_service_swdl_main_back_bg_ml_disable_ovg.bin
+        1,044  opt/data/sysupdate_source/image_btn_service_swdl_main_back_bg_ml_normal_ovg.bin
+        1,044  opt/data/sysupdate_source/image_btn_service_swdl_main_back_bg_mr_disable_ovg.bin
+        1,044  opt/data/sysupdate_source/image_btn_service_swdl_main_back_bg_mr_normal_ovg.bin
+        4,519  opt/data/sysupdate_source/image_btn_service_swdl_main_back_icon_glow_ovg.bin
+          946  opt/data/sysupdate_source/image_btn_service_swdl_main_back_icon_ovg.bin
+          220  opt/data/sysupdate_source/image_button_service_swdl_main_software_update_bg_mc_normal_ovg.bin
+        1,757  opt/data/sysupdate_source/image_button_service_swdl_main_software_update_bg_ml_normal_ovg.bin
+        1,757  opt/data/sysupdate_source/image_button_service_swdl_main_software_update_bg_mr_normal_ovg.bin
+      474,220  opt/data/sysupdate_source/img_main_bg_test_ovg.bin
+        3,980  opt/data/sysupdate_source/img_service_swdl_all_show_icon_waiting_00_0_ovg.bin
+        3,980  opt/data/sysupdate_source/img_service_swdl_all_show_icon_waiting_00_1_ovg.bin
+        3,980  opt/data/sysupdate_source/img_service_swdl_all_show_icon_waiting_00_ovg.bin
+        3,806  opt/data/sysupdate_source/img_service_swdl_all_show_icon_waiting_105_0_ovg.bin
+        3,806  opt/data/sysupdate_source/img_service_swdl_all_show_icon_waiting_105_1_ovg.bin
+        3,806  opt/data/sysupdate_source/img_service_swdl_all_show_icon_waiting_105_ovg.bin
+        3,829  opt/data/sysupdate_source/img_service_swdl_all_show_icon_waiting_120_0_ovg.bin
+        3,829  opt/data/sysupdate_source/img_service_swdl_all_show_icon_waiting_120_1_ovg.bin
+        3,829  opt/data/sysupdate_source/img_service_swdl_all_show_icon_waiting_120_ovg.bin
+        3,799  opt/data/sysupdate_source/img_service_swdl_all_show_icon_waiting_135_0_ovg.bin
+        3,799  opt/data/sysupdate_source/img_service_swdl_all_show_icon_waiting_135_1_ovg.bin
+        3,799  opt/data/sysupdate_source/img_service_swdl_all_show_icon_waiting_135_ovg.bin
+        3,778  opt/data/sysupdate_source/img_service_swdl_all_show_icon_waiting_150_0_ovg.bin
+        3,778  opt/data/sysupdate_source/img_service_swdl_all_show_icon_waiting_150_1_ovg.bin
+        3,778  opt/data/sysupdate_source/img_service_swdl_all_show_icon_waiting_150_ovg.bin
+        3,973  opt/data/sysupdate_source/img_service_swdl_all_show_icon_waiting_15_0_ovg.bin
+        3,973  opt/data/sysupdate_source/img_service_swdl_all_show_icon_waiting_15_1_ovg.bin
+        3,973  opt/data/sysupdate_source/img_service_swdl_all_show_icon_waiting_15_ovg.bin
+        3,894  opt/data/sysupdate_source/img_service_swdl_all_show_icon_waiting_165_0_ovg.bin
+        3,894  opt/data/sysupdate_source/img_service_swdl_all_show_icon_waiting_165_1_ovg.bin
+        3,894  opt/data/sysupdate_source/img_service_swdl_all_show_icon_waiting_165_ovg.bin
+        3,981  opt/data/sysupdate_source/img_service_swdl_all_show_icon_waiting_30_0_ovg.bin
+        3,981  opt/data/sysupdate_source/img_service_swdl_all_show_icon_waiting_30_1_ovg.bin
+        3,981  opt/data/sysupdate_source/img_service_swdl_all_show_icon_waiting_30_ovg.bin
+        3,945  opt/data/sysupdate_source/img_service_swdl_all_show_icon_waiting_45_0_ovg.bin
+        3,945  opt/data/sysupdate_source/img_service_swdl_all_show_icon_waiting_45_1_ovg.bin
+        3,945  opt/data/sysupdate_source/img_service_swdl_all_show_icon_waiting_45_ovg.bin
+        3,996  opt/data/sysupdate_source/img_service_swdl_all_show_icon_waiting_60_0_ovg.bin
+
+########## PACK 5515
+members=6477 total_bytes=228.7MB
+top-level entries: {'usr': 3230, 'opt': 3001, 'etc': 120, 'lib': 96, 'var': 18, 'mirrorlink': 3, 'script': 3, 'bt_ac_firm': 2, 'config.txt': 1, 'kernelImage': 1, 'u-boot.bin': 1, 'vipImage.bin': 1}
+biggest files:
+     18,262,608  usr/lib/icudt48l.dat
+     11,905,712  opt/gresfiles/FZHT_GB18030.ttf
+      9,873,040  usr/local/qte4.7.4/lib/libQtGui.so.4.7.4
+      9,391,476  opt/hmi
+      7,136,424  usr/lib/gstreamer-0.10/libgstffmpeg.so
+      6,223,756  usr/lib/libicudata.so.52.1
+      2,977,544  kernelImage
+      2,916,012  usr/local/qte4.7.4/lib/libQtCore.so.4.7.4
+      2,539,068  usr/lib/libCLC.so
+      1,925,296  opt/memtool
+      1,730,704  usr/lib/libicui18n.so.52.1
+      1,724,352  opt/AndroidAuto/bin/aap_service
+      1,536,000  opt/gresfiles/img_black_and_white_grid_ovg.bin
+      1,536,000  opt/gresfiles/img_fish_ovg.bin
+      1,440,100  opt/AndroidAuto/lib/libcrypto.so.1.0.0
+      1,438,960  opt/lib/libximage.so.1.0.0
+      1,266,535  opt/lib/mirrorlink/libmlc_iface.so
+      1,250,544  bt_ac_firm/20160708_UGZZC-X501A_C180_bt_ac_firm.bin
+      1,223,540  usr/lib/librace_iface.so
+      1,222,252  usr/lib/libicuuc.so.52.1
+      1,194,888  lib/libcrypto.so.0.9.8
+      1,163,520  lib/libc-2.13.so
+      1,155,120  usr/lib/libgio-2.0.so
+      1,155,120  usr/lib/libgio-2.0.so.0.3600.0
+      1,126,344  usr/lib/libxml2.so.2.6.28
+name-pattern matches (503):
+    etc/aap_dev_hu_cert.date.sign
+    etc/aap_dev_hu_priv_key.key
+    etc/aap_dev_root_cert.ca.pem
+    etc/aap_system_attributes.xml
+    opt/AndroidAuto/bin/aapsdk_interface_test
+    opt/AndroidAuto/bin/aapsdk_interface_test_standalone
+    opt/AndroidAuto/bin/AAP_Application
+    opt/AndroidAuto/bin/aap_service
+    opt/AndroidAuto/bin/AAP_TestApp
+    opt/AndroidAuto/lib/libaap_adplayer.so
+    opt/AndroidAuto/lib/libaap_adrecorder.so
+    opt/AndroidAuto/lib/libaap_interface.so
+    opt/AndroidAuto/lib/libaap_vdplayer.so
+    opt/data/carplay/Skoda_Carplay_oemIcon_V1.png
+    opt/data/carplay/VW_CarPlay_oemIcon_V1.png
+    opt/data/sysupdate_source/VWThesis MQB Light.ttf
+    opt/data/sysupdate_source/VWThesis MQB Regular.ttf
+    opt/gresfiles/image_btn_popup_climate_seatheater_left_btn_down_off_bg_lc_disable_ovg.bin
+    opt/gresfiles/image_btn_popup_climate_seatheater_left_btn_down_off_bg_lc_normal_ovg.bin
+    opt/gresfiles/image_btn_popup_climate_seatheater_left_btn_down_off_bg_ll_disable_ovg.bin
+    opt/gresfiles/image_btn_popup_climate_seatheater_left_btn_down_off_bg_ll_normal_ovg.bin
+    opt/gresfiles/image_btn_popup_climate_seatheater_left_btn_down_off_bg_lr_disable_ovg.bin
+    opt/gresfiles/image_btn_popup_climate_seatheater_left_btn_down_off_bg_lr_naromal_ovg.bin
+    opt/gresfiles/image_btn_popup_climate_seatheater_left_btn_down_off_bg_ml_disable_ovg.bin
+    opt/gresfiles/image_btn_popup_climate_seatheater_left_btn_down_off_bg_ml_normal_ovg.bin
+    opt/gresfiles/image_btn_popup_climate_seatheater_left_btn_down_off_bg_mr_disable_ovg.bin
+    opt/gresfiles/image_btn_popup_climate_seatheater_left_btn_down_off_bg_mr_normal_ovg.bin
+    opt/gresfiles/image_btn_popup_climate_seatheater_left_btn_down_off_bg_uc_disable_ovg.bin
+    opt/gresfiles/image_btn_popup_climate_seatheater_left_btn_down_off_bg_uc_normal_ovg.bin
+    opt/gresfiles/image_btn_popup_climate_seatheater_left_btn_down_off_bg_ul_disable_ovg.bin
+    opt/gresfiles/image_btn_popup_climate_seatheater_left_btn_down_off_bg_ul_normal_ovg.bin
+    opt/gresfiles/image_btn_popup_climate_seatheater_left_btn_down_off_bg_ur_disable_ovg.bin
+    opt/gresfiles/image_btn_popup_climate_seatheater_left_btn_down_off_bg_ur_normal_ovg.bin
+    opt/gresfiles/image_button_car_setup_seats_icon_d_ovg.bin
+    opt/gresfiles/image_vw270_1la_pureair_car_ovg.bin
+    opt/gresfiles/image_vw276_1cn_k_pureair_car_ovg.bin
+    opt/gresfiles/image_vw276_1cn_k_pureair_car_step1_ovg.bin
+    opt/gresfiles/image_vw276_1cn_k_pureair_car_step2_ovg.bin
+    opt/gresfiles/image_vw276_1cn_k_pureair_car_step3_ovg.bin
+    opt/gresfiles/image_vw276_1cn_k_pureair_car_step4_ovg.bin
+    opt/gresfiles/image_vw276_1cn_k_pureair_car_step5_ovg.bin
+    opt/gresfiles/image_vw276_1cn_k_pureair_car_step6_ovg.bin
+    opt/gresfiles/image_vw276_1cn_k_pureair_car_step7_ovg.bin
+    opt/gresfiles/image_vw276_1cn_k_pureair_car_step8_ovg.bin
+    opt/gresfiles/image_vw276_1cn_k_pureair_car_step9_ovg.bin
+    opt/gresfiles/image_vw313_0cs_k_pureair_car_ovg.bin
+    opt/gresfiles/image_vw313_0cs_k_pureair_car_step1_ovg.bin
+    opt/gresfiles/image_vw313_0cs_k_pureair_car_step2_ovg.bin
+    opt/gresfiles/image_vw313_0cs_k_pureair_car_step3_ovg.bin
+    opt/gresfiles/image_vw313_0cs_k_pureair_car_step4_ovg.bin
+    opt/gresfiles/image_vw313_0cs_k_pureair_car_step5_ovg.bin
+    opt/gresfiles/image_vw313_0cs_k_pureair_car_step6_ovg.bin
+    opt/gresfiles/image_vw313_0cs_k_pureair_car_step7_ovg.bin
+    opt/gresfiles/image_vw313_0cs_k_pureair_car_step8_ovg.bin
+    opt/gresfiles/image_vw313_0cs_k_pureair_car_step9_ovg.bin
+    opt/gresfiles/image_vw326_0cs_kl_pureair_car_ovg.bin
+    opt/gresfiles/image_vw326_0cs_kl_pureair_car_step1_ovg.bin
+    opt/gresfiles/image_vw326_0cs_kl_pureair_car_step2_ovg.bin
+    opt/gresfiles/image_vw326_0cs_kl_pureair_car_step3_ovg.bin
+    opt/gresfiles/image_vw326_0cs_kl_pureair_car_step4_ovg.bin
+    opt/gresfiles/image_vw326_0cs_kl_pureair_car_step5_ovg.bin
+    opt/gresfiles/image_vw326_0cs_kl_pureair_car_step6_ovg.bin
+    opt/gresfiles/image_vw326_0cs_kl_pureair_car_step7_ovg.bin
+    opt/gresfiles/image_vw326_0cs_kl_pureair_car_step8_ovg.bin
+    opt/gresfiles/image_vw326_0cs_kl_pureair_car_step9_ovg.bin
+    opt/gresfiles/image_vw370_2cn_k_pureair_car_ovg.bin
+    opt/gresfiles/image_vw370_2cn_k_pureair_car_step1_ovg.bin
+    opt/gresfiles/image_vw370_2cn_k_pureair_car_step2_ovg.bin
+    opt/gresfiles/image_vw370_2cn_k_pureair_car_step3_ovg.bin
+    opt/gresfiles/image_vw370_2cn_k_pureair_car_step4_ovg.bin
+    opt/gresfiles/image_vw370_2cn_k_pureair_car_step5_ovg.bin
+    opt/gresfiles/image_vw370_2cn_k_pureair_car_step6_ovg.bin
+    opt/gresfiles/image_vw370_2cn_k_pureair_car_step7_ovg.bin
+    opt/gresfiles/image_vw370_2cn_k_pureair_car_step8_ovg.bin
+    opt/gresfiles/image_vw370_2cn_k_pureair_car_step9_ovg.bin
+    opt/gresfiles/image_vw371_0me_k_pureair_car_ovg.bin
+    opt/gresfiles/image_vw371_0me_k_pureair_car_step1_ovg.bin
+    opt/gresfiles/image_vw371_0me_k_pureair_car_step2_ovg.bin
+    opt/gresfiles/image_vw371_0me_k_pureair_car_step3_ovg.bin
+    opt/gresfiles/image_vw371_0me_k_pureair_car_step4_ovg.bin
+    opt/gresfiles/image_vw371_0me_k_pureair_car_step5_ovg.bin
+    opt/gresfiles/image_vw371_0me_k_pureair_car_step6_ovg.bin
+    opt/gresfiles/image_vw371_0me_k_pureair_car_step7_ovg.bin
+    opt/gresfiles/image_vw371_0me_k_pureair_car_step8_ovg.bin
+    opt/gresfiles/image_vw371_0me_k_pureair_car_step9_ovg.bin
+    opt/gresfiles/image_vw372_0me_k_pureair_car_ovg.bin
+    opt/gresfiles/image_vw372_0me_k_pureair_car_step1_ovg.bin
+    opt/gresfiles/image_vw372_0me_k_pureair_car_step2_ovg.bin
+    opt/gresfiles/image_vw372_0me_k_pureair_car_step3_ovg.bin
+    opt/gresfiles/image_vw372_0me_k_pureair_car_step4_ovg.bin
+    opt/gresfiles/image_vw372_0me_k_pureair_car_step5_ovg.bin
+    opt/gresfiles/image_vw372_0me_k_pureair_car_step6_ovg.bin
+    opt/gresfiles/image_vw372_0me_k_pureair_car_step7_ovg.bin
+    opt/gresfiles/image_vw372_0me_k_pureair_car_step8_ovg.bin
+    opt/gresfiles/image_vw372_0me_k_pureair_car_step9_ovg.bin
+    opt/gresfiles/image_vw378_0cs_k_pureair_car_ovg.bin
+    opt/gresfiles/image_vw378_0cs_k_pureair_car_step1_ovg.bin
+    opt/gresfiles/image_vw378_0cs_k_pureair_car_step2_ovg.bin
+    opt/gresfiles/image_vw378_0cs_k_pureair_car_step3_ovg.bin
+    opt/gresfiles/image_vw378_0cs_k_pureair_car_step4_ovg.bin
+    opt/gresfiles/image_vw378_0cs_k_pureair_car_step5_ovg.bin
+    opt/gresfiles/image_vw378_0cs_k_pureair_car_step6_ovg.bin
+    opt/gresfiles/image_vw378_0cs_k_pureair_car_step7_ovg.bin
+    opt/gresfiles/image_vw378_0cs_k_pureair_car_step8_ovg.bin
+    opt/gresfiles/image_vw378_0cs_k_pureair_car_step9_ovg.bin
+    opt/gresfiles/image_vw481_0cn_kl_pureair_car_ovg.bin
+    opt/gresfiles/image_vw481_0cn_kl_pureair_car_step1_ovg.bin
+    opt/gresfiles/image_vw481_0cn_kl_pureair_car_step2_ovg.bin
+    opt/gresfiles/image_vw481_0cn_kl_pureair_car_step3_ovg.bin
+    opt/gresfiles/image_vw481_0cn_kl_pureair_car_step4_ovg.bin
+    opt/gresfiles/image_vw481_0cn_kl_pureair_car_step5_ovg.bin
+    opt/gresfiles/image_vw481_0cn_kl_pureair_car_step6_ovg.bin
+    opt/gresfiles/image_vw481_0cn_kl_pureair_car_step7_ovg.bin
+    opt/gresfiles/image_vw481_0cn_kl_pureair_car_step8_ovg.bin
+    opt/gresfiles/image_vw481_0cn_kl_pureair_car_step9_ovg.bin
+    opt/gresfiles/img_btn_car_factoryset_seats_icon_glow_ovg.bin
+    opt/gresfiles/img_btn_car_factoryset_seats_icon_ovg.bin
+    opt/gresfiles/img_btn_popup_climate_seatheater_left_btn_down_off_states_d_ovg.bin
+    opt/gresfiles/img_btn_popup_climate_seatheater_left_btn_down_off_states_n_ovg.bin
+    opt/gresfiles/img_btn_popup_climate_seatheater_left_btn_down_off_states_p_glow_ovg.bin
+media members: 52
+        4,845  opt/data/carplay/Skoda_Carplay_oemIcon_V1.png
+        5,266  opt/data/carplay/VW_CarPlay_oemIcon_V1.png
+      148,189  opt/gresfiles/Startscreens_ASIA/Startscreen_Alltrack.png
+      161,388  opt/gresfiles/Startscreens_ASIA/Startscreen_Beats_Audio.png
+      158,747  opt/gresfiles/Startscreens_ASIA/Startscreen_Blue_Motion.png
+      145,654  opt/gresfiles/Startscreens_ASIA/Startscreen_Dynaudio.png
+      153,603  opt/gresfiles/Startscreens_ASIA/Startscreen_E_Golf.png
+      143,103  opt/gresfiles/Startscreens_ASIA/Startscreen_GTD.png
+      157,606  opt/gresfiles/Startscreens_ASIA/Startscreen_GTE.png
+      146,956  opt/gresfiles/Startscreens_ASIA/Startscreen_GTI.png
+      152,605  opt/gresfiles/Startscreens_ASIA/Startscreen_Normal.png
+      151,239  opt/gresfiles/Startscreens_ASIA/Startscreen_R.png
+      151,253  opt/gresfiles/Startscreens_ASIA/Startscreen_R_Line.png
+      157,282  opt/gresfiles/Startscreens_ASIA/Startscreen_Twin_Drive.png
+      140,788  opt/gresfiles/Startscreens_EU/Startscreen_Alltrack.png
+      152,916  opt/gresfiles/Startscreens_EU/Startscreen_Beats_Audio.png
+      151,043  opt/gresfiles/Startscreens_EU/Startscreen_Blue_Motion.png
+      138,125  opt/gresfiles/Startscreens_EU/Startscreen_Dynaudio.png
+      145,861  opt/gresfiles/Startscreens_EU/Startscreen_E_Golf.png
+      135,854  opt/gresfiles/Startscreens_EU/Startscreen_GTD.png
+      149,887  opt/gresfiles/Startscreens_EU/Startscreen_GTE.png
+      139,559  opt/gresfiles/Startscreens_EU/Startscreen_GTI.png
+      145,203  opt/gresfiles/Startscreens_EU/Startscreen_Normal.png
+      143,639  opt/gresfiles/Startscreens_EU/Startscreen_R.png
+      143,801  opt/gresfiles/Startscreens_EU/Startscreen_R_Line.png
+      149,808  opt/gresfiles/Startscreens_EU/Startscreen_Twin_Drive.png
+      152,053  opt/gresfiles/Startscreens_NAR/Startscreen_Alltrack.png
+      165,300  opt/gresfiles/Startscreens_NAR/Startscreen_Beats_Audio.png
+      162,627  opt/gresfiles/Startscreens_NAR/Startscreen_Blue_Motion.png
+      149,349  opt/gresfiles/Startscreens_NAR/Startscreen_Dynaudio.png
+      157,336  opt/gresfiles/Startscreens_NAR/Startscreen_E_Golf.png
+      156,231  opt/gresfiles/Startscreens_NAR/Startscreen_Family.png
+      146,842  opt/gresfiles/Startscreens_NAR/Startscreen_GTD.png
+      161,393  opt/gresfiles/Startscreens_NAR/Startscreen_GTE.png
+      150,762  opt/gresfiles/Startscreens_NAR/Startscreen_GTI.png
+      156,231  opt/gresfiles/Startscreens_NAR/Startscreen_Normal.png
+      155,272  opt/gresfiles/Startscreens_NAR/Startscreen_R.png
+      155,145  opt/gresfiles/Startscreens_NAR/Startscreen_R_Line.png
+      161,166  opt/gresfiles/Startscreens_NAR/Startscreen_Twin_Drive.png
+      148,189  opt/gresfiles/Startscreen_Alltrack.png
+

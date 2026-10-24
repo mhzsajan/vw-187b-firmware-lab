@@ -1,0 +1,1000 @@
+﻿
+########## ./etc/test.sh  (3335 bytes)
+#!/bin/sh
+
+# Import environment
+. /svp/etc/env_setup.sh
+
+# Import funcitons
+. /svp/etc/func_env.sh
+. /svp/etc/func_cleanup.sh
+. /svp/etc/func_startstop.sh
+
+# Print verion info.
+echo -e "[SVP] SVP_VERSION    :"$SVP_VERSION
+echo -e "[SVP] SVP_BUILD_DATE :"$SVP_BUILD_DATE
+
+case "$1" in
+	start)
+		echo "[SVP] Starting ..."
+		# Clear tmp data when reinit
+		svp_clear_tmp_data
+
+		if [ -d "${SVP_APP_PKG_PATH}" ]; then
+		if [ -s "${SVP_RMT_PKG_FILE}" ]; then
+			# Update Radio SW & APPs
+			/svp/etc/update.sh apps_and_rmt
+		else
+			# Update APPs Only
+			/svp/etc/update.sh apps_only
+		fi
+		elif [ -s "${SVP_RMT_PKG_FILE}" ]; then
+			# Update Radio SW Only
+			/svp/etc/update.sh rmt_only
+		elif [ -s "${SVP_RMT_DSP_FILE}" ]; then
+			/svp/etc/update.sh dsp_only
+		elif [ -s "${SVP_RMT_GPS_UPGRADE_FILE}" ] && [ -s "${SVP_RMT_GPS_BOOT_FILE}" ]; then
+			/svp/etc/update.sh gps_only
+		else
+			# Normal Startup
+
+			svp_env_normal
+
+			# Start SVP (services)
+			# P1: service_prio(-20 ~ 19) #P2: service_name
+			svp_start_service -12 persistservice
+			svp_start_service -13 cameraservice
+			svp_start_service -14 devicemgr
+			svp_start_service -15 powermgr
+			svp_start_service -15 audiomgr
+			svp_start_service -15 sourcemgr
+			svp_start_service -8  tunerservice
+			svp_start_service -8  auxservice
+			svp_start_service -8  btservice
+			svp_start_service -8  discservice
+			svp_start_service -8  mediaservice
+			svp_start_service -7  ipodservice
+			svp_start_service -11 locationservice
+
+			# Fist connect completed
+			powerctrl 2 &			# 2: SVPPower::PS_FIRST_CONNECT_COMPLETE;
+
+			# Start APP Services
+			svp_start_service -6  promptservice
+			svp_start_service -10 appmgr
+			svp_start_service -5  file-explorerservice
+			svp_start_service -5  updateservice
+			svp_start_service -5  wifiservice
+			svp_start_service -5  engineeringservice
+			svp_start_service -6  ttsservice
+			svp_start_service -7  asrservice
+			sleep 5
+			svp_start_service -7  carplayservice #can't start too quick
+			svp_drop_caches
+		fi
+		;;
+	stop)
+		echo "[SVP] Stopping ..."
+		killall procguard
+		;;
+	step1)
+		echo "[SVP] Step1 ..."
+		svp_step1
+		;;
+	step2)
+		echo "[SVP] Step2 ..."
+		# Start SVP APP (system apps)
+		app-run 12  normal	1	#vpanel
+		sleep 10
+		app-run 19  normal	1	#logo
+		sleep 10
+		app-run 13  normal	0	#APP_PLATFORM_CONST_STATUSBAR (topmost),ADP_HIGHEST
+		sleep 10
+		app-run 18  normal	5	#APP_PLATFORM_CONST_CAMERA,ADP_ABOVE_NORMAL.
+		sleep 10
+		app-run 14  normal	1	#APP_PLATFORM_CONST_LAUNCHER
+		sleep 10
+		#app-run 17  normal	1	#APP_PLATFORM_CONST_MEDIA_MENU,ADP_LOWEST
+		
+		app-run 20  normal	1
+		sleep 10
+		app-run 41  normal	1
+		sleep 10
+		app-run 44  normal	1
+		sleep 10
+		app-run 45  normal	1
+		sleep 10
+		app-run 47  normal	1
+		sleep 10
+		app-run 48  normal	1
+		sleep 10
+		#app-run 61  normal	1 navi
+		app-run 62  normal	1
+		sleep 10
+		app-run 63  normal	1
+		sleep 10
+		app-run 64  normal	1
+		sleep 10
+		app-run 65  normal	1
+		sleep 10
+		app-run 66  normal	1
+		sleep 10
+		#app-run 67  normal	1 cd
+		app-run 68  normal	1
+		sleep 10
+		app-run 73  normal	1
+		sleep 10
+		app-run 74  normal	1
+		sleep 10
+		app-run 75  normal	1
+		sleep 10
+		app-run 77  normal	1
+		sleep 10
+		app-run 78  normal	1
+		sleep 10
+		app-run 79  normal	1
+		sleep 10
+		app-run 80  normal	1
+		;;
+	*)
+		echo "Usage: /svp/etc/init.sh {start|stop|step1|step2}"
+		exit 1
+esac
+
+exit 0
+
+
+########## ./etc/app.conf  (3620 bytes)
+# iLM layer configuration file v1.0
+
+[ILM_CONF]
+# Default surface_id for apps not in configuration (DEFAULT_SURFACE_ID + n)
+DEFAULT_SURFACE_ID = 3200
+
+[ILM_SURFACE_IDS]
+# Surfaces on Layer 1000
+SURFACE_ID = 1001   APP_ID = 12                         // APP_PLATFORM_CONST_VPANEL
+
+# Surfaces on Layer 2000
+# Video Layers with surface_id = 20000000 + pid 
+
+# Surfaces on Layer 3000
+# App Layer: Surfaces not in render order will be attached to this layer
+SURFACE_ID = 0      APP_ID = 14                        // APP_PLATFORM_CONST_LAUNCHER
+SURFACE_ID = 3002   APP_ID = 41                        // APP_PLATFORM_SETTING
+SURFACE_ID = 3003   APP_ID = 42                        // APP_PLATFORM_TASKMGR
+SURFACE_ID = 3004   APP_ID = 43                        // APP_PLATFORM_FILE_EXPLORER
+SURFACE_ID = 3005   APP_ID = 44                        // APP_PLATFORM_TEXT_EXPLORER
+SURFACE_ID = 3006   APP_ID = 45                        // APP_PLATFORM_PICTURE_EXPLORER
+SURFACE_ID = 3007   APP_ID = 46                        // APP_PLATFORM_TS_CALIBRATE
+SURFACE_ID = 3008   APP_ID = 47                        // APP_PLATFORM_SW_UPDATE
+SURFACE_ID = 3009   APP_ID = 48                        // APP_PLATFORM_ENGINEERING_MODE
+SURFACE_ID = 3010   APP_ID = 61                        // APP_PLATFORM_NAVI
+SURFACE_ID = 3011   APP_ID = 62                        // APP_PLATFORM_RADIO
+SURFACE_ID = 3012   APP_ID = 63                        // APP_PLATFORM_VIDEO
+SURFACE_ID = 3013   APP_ID = 64                        // APP_PLATFORM_MUSIC
+SURFACE_ID = 3014   APP_ID = 65                        // APP_PLATFORM_IPOD
+SURFACE_ID = 3015   APP_ID = 66                        // APP_PLATFORM_BT
+SURFACE_ID = 3016   APP_ID = 67                        // APP_PLATFORM_CD
+SURFACE_ID = 3017   APP_ID = 68                        // APP_PLATFORM_AUX
+SURFACE_ID = 3018   APP_ID = 69                        // APP_PLATFORM_AUDIOSETUP
+SURFACE_ID = 3019   APP_ID = 70                        // APP_PLATFORM_WIFI
+SURFACE_ID = 3020   APP_ID = 71                        // APP_PLATFORM_MIRRORLINK
+SURFACE_ID = 3021   APP_ID = 73                        // APP_PLATFORM_MEDIALIST
+SURFACE_ID = 3022   APP_ID = 74                        // APP_PLATFORM_FAVORITELIST
+SURFACE_ID = 3023   APP_ID = 75                        // APP_PLATFORM_CARPLAY
+SURFACE_ID = 3024   APP_ID = 76                        // APP_PLATFORM_BROWSER
+SURFACE_ID = 3025   APP_ID = 77                        // APP_PLATFORM_ASR
+SURFACE_ID = 3026   APP_ID = 78                        // APP_PLATFORM_DLNA
+SURFACE_ID = 3027   APP_ID = 79                        // APP_PLATFORM_BT_MUSIC
+SURFACE_ID = 3028   APP_ID = 80                        // APP_PLATFORM_BT_CALL
+SURFACE_ID = 3029   APP_ID = 81                        // APP_PLATFORM_ANDROIDAUTO
+
+# Surfaces on Layer 4000
+SURFACE_ID = 4001   APP_ID = 17                        // APP_PLATFORM_CONST_MEDIA_MENU
+
+# Surfaces on Layer 5000
+#SURFACE_ID = 5001  APP_ID = 15                        // APP_PLATFORM_CONST_IME
+SURFACE_ID = 5002   APP_ID = 20                        // APP_PLATFORM_CONST_LOCK_SCREEN
+SURFACE_ID = 5003   APP_ID = 16                        // APP_PLATFORM_CONST_TIP
+SURFACE_ID = 5004   APP_ID = 13                        // APP_PLATFORM_CONST_STATUSBAR
+
+# Surfaces on Layer 6000
+SURFACE_ID = 6001   APP_ID = 72                        // APP_PLATFORM_CLOSESCREEN
+SURFACE_ID = 6002   APP_ID = 19                        // APP_PLATFORM_CONST_WELCOME
+
+# Surfaces on Layer 7000
+#SURFACE_ID = 7001                                     // RVC Video
+SURFACE_ID = 7002   APP_ID = 18                        // APP_PLATFORM_CONST_CAMERA
+
+
+########## ./etc/servicestart.sh  (139 bytes)
+#!/bin/sh
+#Import environment
+. /svp/etc/env_setup.sh
+
+#Import funcitons
+. /svp/etc/func_startstop.sh
+
+
+svp_start_service $1 $2
+
+exit 0
+
+
+
+
+
+########## ./etc/logo.sh  (84 bytes)
+#!/bin/sh
+
+case "$1" in
+	power_up)
+		;;
+	user_on)
+		;;
+	user_off)
+		;;
+esac
+
+exit 0
+
+
+########## ./etc/func_env.sh  (3098 bytes)
+#!/bin/sh
+svp_env_cgroup()
+{
+	if [ "$SVP_ENABLE_CGROUP" != "true" ]; then 
+		return 0
+	fi
+
+	if [ ! -x "/usr/bin/cgexec" ]; then
+		export SVP_ENABLE_CGROUP="false"
+		return 0
+	fi
+
+	echo "[SVP] Create cgroups ..."
+
+	mkdir /run/cgroups/cpu -p
+	mount -t cgroup -o cpu cpu /run/cgroups/cpu
+	mkdir /run/cgroups/cpu/svp
+	mkdir /run/cgroups/cpu/app
+	mkdir /run/cgroups/cpu/specific
+    mkdir /run/cgroups/cpu/link
+	cgset -r cpu.shares=341 link
+
+	return 0
+}
+
+svp_env_procguard()
+{
+	if [ "$SVP_ENABLE_PROCGUARD" != "true" ]; then 
+		return 0
+	fi
+
+	if [ ! -x "${SVP_ROOT_PATH}/bin/procguard" ]; then
+		export SVP_ENABLE_PROCGUARD="false"
+	fi
+
+	return 0
+}
+
+svp_env_normal()
+{
+	echo "[SVP] Setup ENV for Normal Boot-Up ..."
+	# Mount "data" Partition
+	mount ${SVP_DATA_PARTITION} ${SVP_USER_ROOT_PATH}
+
+	if [ $? -ne 0 ]; then
+		if [ -s "${SVP_USER_ROOT_PATH}/lost+found" ]; then
+			echo "[SVP] mount successful..."
+		else
+			echo "[SVP] mount fail, formatting..."
+			mkfs.ext4 ${SVP_DATA_PARTITION}
+			mount ${SVP_DATA_PARTITION} ${SVP_USER_ROOT_PATH}
+		fi
+	else
+		echo "[SVP] mount return 0..."
+	fi
+
+	if [ ! -d "${SVP_USER_APP_INSTALL_PATH}" ]; then
+		mkdir -p ${SVP_USER_APP_INSTALL_PATH}
+	fi
+
+	if [ ! -d "${SVP_USER_DATA_PATH}/appinfo" ]; then
+		mkdir -p ${SVP_USER_DATA_PATH}/appinfo
+	fi
+
+    if [ ! -d "${SVP_USER_DATA_PATH}/kanzi" ]; then
+        mkdir -p ${SVP_USER_DATA_PATH}/kanzi
+    fi
+
+    if [ ! -d "${SVP_USER_ETC_PATH}" ]; then
+        mkdir -p ${SVP_USER_ETC_PATH}
+    fi
+
+	# Deploy "ipod_config"
+	if [ ! -s "${SVP_USER_ROOT_PATH}/ipod_config.xml" ]; then
+		cp -a /svp/bin/ipod_config.xml ${SVP_USER_ROOT_PATH}
+	fi
+
+	if [ ! -s "${SVP_USER_DATA_PATH}/HWR_SYS_SIN_UNI" ]; then
+		cp -a /svp/share/HWR_SYS_SIN_UNI ${SVP_USER_DATA_PATH}
+	fi
+	
+	if [ -e "${SVP_USER_ROOT_PATH}/debug.flag" ]; then
+		debug_flag=`cat "${SVP_USER_ROOT_PATH}/debug.flag"`
+		case "$debug_flag" in
+			null|none)
+				export SVP_DEBUG_OUTPUT="none"
+				;;
+			kmsg|syslog)
+				export SVP_DEBUG_OUTPUT="kmsg"
+				;;
+			file)
+				export SVP_DEBUG_OUTPUT="file"
+				;;
+			*)
+				export SVP_DEBUG_OUTPUT="console"
+				;;
+		esac
+	fi
+
+	svp_env_cgroup
+
+	svp_env_procguard
+
+	return 0
+}
+
+svp_env_update()
+{
+	echo "[SVP] Setup ENV for SW Update ..."
+	mount ${SVP_STORAGE_PATH} -o rw,remount
+	mkdir -p ${SVP_USER_ROOT_PATH}
+
+	if [ $SVP_UPDATE_SW_CLEAN = "YES" ]; then
+		#升级过程中需要格式化数据保存区
+		mkfs.ext4 ${SVP_DATA_PARTITION}
+		mount ${SVP_DATA_PARTITION} ${SVP_USER_ROOT_PATH}
+	else
+		mount ${SVP_DATA_PARTITION} ${SVP_USER_ROOT_PATH}
+	    #删除trace开关文件，升级后默认没有trace输出
+	    rm -fr /storage/data/debug.flag	
+	fi
+
+	mkdir -p ${SVP_SYS_APP_INSTALL_PATH}
+	#mkdir -p ${SVP_SYS_DATA_PATH}
+	mkdir -p ${SVP_SYS_DATA_PATH}/appinfo
+
+	mkdir -p ${SVP_USER_APP_INSTALL_PATH}
+	#mkdir -p ${SVP_USER_DATA_PATH}
+	mkdir -p ${SVP_USER_DATA_PATH}/appinfo
+	mkdir -p ${SVP_USER_ETC_PATH}
+
+	svp_env_cgroup
+
+	svp_env_procguard
+
+	return 0
+}
+
+svp_env_update_rmt()
+{
+	echo "[SVP] Setup ENV for SW Update (RMT Only) ..."
+	mount ${SVP_STORAGE_PATH} -o rw,remount
+
+	svp_env_cgroup
+
+	svp_env_procguard
+
+	return 0
+}
+
+
+########## ./etc/hardkey.conf  (2439 bytes)
+# Hard Key to VKey Maping configuration file v1.0
+
+[Key Mapping]
+
+# KEY_IDX:		Hard Key Index (0 ~ 239)
+# VKEY_ID:		VKey ID (768 + 0 ~ 239 | 0x0300 ~ 0x03EF)
+
+################################################################
+# Config for G4
+#KEY_IDX = 0			VKEY_ID = 0x030F		//VKEY_POWER
+#KEY_IDX = 1			VKEY_ID = 0x0302		//VKEY_TONE
+#KEY_IDX = 2			VKEY_ID = 0x0301		//VKEY_PHONE
+#KEY_IDX = 3			VKEY_ID = 0x030B		//VKEY_MEDIA
+#KEY_IDX = 4			VKEY_ID = 0x0300		//VKEY_RADIO
+#KEY_IDX = 5			VKEY_ID = 0x030C		//VKEY_PREV
+#KEY_IDX = 6			VKEY_ID = 0x030D		//VKEY_NEXT
+#KEY_IDX = 9			VKEY_ID = 0x0303		//VKEY_MAP
+#KEY_IDX = 10			VKEY_ID = 0x0304		//VKEY_NAVI
+#KEY_IDX = 7			VKEY_ID = 0x0307		//VKEY_EJECT
+#KEY_IDX = 8			VKEY_ID = 0x030E		//VKEY_MUTE
+#KEY_IDX = 11			VKEY_ID = 0x0305		//VKEY_DISC
+#KEY_IDX = 12			VKEY_ID = 0x0306		//VKEY_SETUP
+#KEY_IDX = 13			VKEY_ID = 0x0308		//VKEY_HOME
+
+#KEY_IDX = 9			VKEY_ID = 0x0312		//VKEY_UP
+#KEY_IDX = 10			VKEY_ID = 0x0313		//VKEY_DOWN
+#KEY_IDX = 5			VKEY_ID = 0x0314		//VKEY_LEFT
+#KEY_IDX = 6			VKEY_ID = 0x0315		//VKEY_RIGHT
+#KEY_IDX = 7			VKEY_ID = 0x0316		//VKEY_OK
+#KEY_IDX = 11			VKEY_ID = 0x0309		//VKEY_BACK
+
+################################################################
+# Config for MP2017 : modify by wjq
+#KEY_IDX = 17			VKEY_ID = 0x030F		//VKEY_POWER
+KEY_IDX = 17			VKEY_ID = 0x030E		//VKEY_MUTE
+
+KEY_IDX = 1			VKEY_ID = 0x0300		//VKEY_RADIO
+KEY_IDX = 2			VKEY_ID = 0x030B		//VKEY_MEDIA
+KEY_IDX = 3			VKEY_ID = 0x0321		//VKEY_CAR
+KEY_IDX = 4			VKEY_ID = 0x0306		//VKEY_SETUP
+KEY_IDX = 5			VKEY_ID = 0x0301		//VKEY_PHONE
+KEY_IDX = 6			VKEY_ID = 0x0316		//VKEY_OK
+KEY_IDX = 7			VKEY_ID = 0x0323		//VKEY_APP
+KEY_IDX = 16			VKEY_ID = 0x0322		//VKEY_PRODUCTION <- MEDIA+PHONE
+
+KEY_IDX = 48			VKEY_ID = 0x0317		//VKEY_VOLUME_UP,//0x0317
+KEY_IDX = 49			VKEY_ID = 0x0318		//VKEY_VOLUME_DOWN,//0x0318
+KEY_IDX = 50			VKEY_ID = 0x030C		//VKEY_PREV,//0x030C
+KEY_IDX = 51			VKEY_ID = 0x030D		//VKEY_NEXT,//0x030D
+KEY_IDX = 52			VKEY_ID = 0x0325		//VKEY_MFL_PHONE,//0x0325
+KEY_IDX = 53			VKEY_ID = 0x0324		//VKEY_MFL_PTT,//0x0324
+KEY_IDX = 54			VKEY_ID = 0x030E		//VKEY_MUTE,//0x030E
+KEY_IDX = 55			VKEY_ID = 0x0319		//VKEY_VR,//0x0319
+
+#################################################################
+
+[Knob Mapping]
+# KNOB_IDX:		Knob Index (0 ~ 15)
+# VKNOB_ID:		VKnob ID (1008 + 0 ~ 15 | 0x03F0 ~ 0x03FF)
+
+KNOB_IDX = 0		VKNOB_ID = 0x03F0		//VKNOB_VOLUME
+KNOB_IDX = 1		VKNOB_ID = 0x03F1		//VKNOB_TUNE
+
+
+
+
+
+
+########## ./etc/run-arm.sh  (155 bytes)
+#!/bin/sh
+#Import environment
+. /svp/etc/env_setup.sh
+
+export LD_LIBRARY_PATH=${PWD}:${LD_LIBRARY_PATH}
+
+#-qws & -Mode
+./$1 -mode $2 -name $3 $4 &
+
+exit 0
+
+
+########## ./etc/init.sh  (3277 bytes)
+#!/bin/sh
+
+# Import environment
+. /svp/etc/env_setup.sh
+
+# Import funcitons
+. /svp/etc/func_env.sh
+. /svp/etc/func_cleanup.sh
+. /svp/etc/func_startstop.sh
+
+#dd if=/dev/zero of=/run/g5.log bs=1k count=1024
+#losetup /dev/loop0 /run/g5.log
+#mkfs -t ext4 /dev/loop0
+#mkdir /mnt/log
+#mount -o loop /dev/loop0 /mnt/log
+
+# Print verion info.
+echo -e "[SVP] SVP_VERSION    :"$SVP_VERSION
+echo -e "[SVP] SVP_BUILD_DATE :"$SVP_BUILD_DATE
+
+case "$1" in
+	start)
+		echo "[SVP] Starting ..."
+		# Clear tmp data when reinit
+		svp_clear_tmp_data
+
+		if [ -d "${SVP_APP_PKG_PATH}" ]; then
+		if [ -s "${SVP_RMT_PKG_FILE}" ]; then
+			# Update Radio SW & APPs
+			/svp/etc/update.sh apps_and_rmt
+		else
+			# Update APPs Only
+			/svp/etc/update.sh apps_only
+		fi
+		elif [ -s "${SVP_RMT_PKG_FILE}" ]; then
+			# Update Radio SW Only
+			/svp/etc/update.sh rmt_only
+		#elif [ -s "${SVP_RMT_DSP_FILE}" ]; then  G5平台不需要升级DSP，所以注释掉。J71R IPM自己打开
+		#	/svp/etc/update.sh dsp_only
+		elif [ -s "${SVP_RMT_GPS_UPGRADE_FILE}" ] && [ -s "${SVP_RMT_GPS_BOOT_FILE}" ]; then
+			/svp/etc/update.sh gps_only
+		else
+			# Normal Startup
+
+			svp_env_normal
+
+			# Start SVP (services)
+			# P1: service_prio(-20 ~ 19) #P2: service_name
+			svp_start_service -15 persistservice
+			svp_start_service -15 devicemgr
+			svp_start_service -15 audiomgr
+			svp_start_service -14 powermgr	
+			svp_start_service -13 sourcemgr
+				
+			svp_start_service -12 ilmservice
+			svp_start_service -11 appmgr
+			#app-run 12  StartInShell	1	1	#vpanel
+
+			
+
+			echo "powerctrl."
+			# Fist connect completed
+			powerctrl 2 &			# 2: SVPPower::PS_FIRST_CONNECT_COMPLETE;
+
+			# Start APP Services
+
+			svp_start_service -10 cameraservice
+			svp_start_service -10 canservice
+			svp_start_service -9  tunerservice
+			svp_start_service -9  auxservice
+			svp_start_service -9  btservice
+			svp_start_service -8  mediaservice
+			svp_start_service -7  ipodservice
+
+			svp_start_service -8 exlapservice
+
+			svp_start_service -6  promptservice
+			svp_start_service -5  file-explorerservice
+
+			svp_start_service -5  updateservice
+			svp_start_service -5  engineeringservice
+			svp_start_service -7  mdnsd #carplay与carlife共用
+			svp_start_service -7  carplayservice
+			#app-run 13  StartInShell	1	0	#APP_PLATFORM_CONST_STATUSBAR
+			svp_start_service -7  carlifeservice
+			svp_start_service -7  mirrorlinkservice
+			#app-run 16  StartInShell	1	0	#APP_PLATFORM_CONST_TIP	
+			svp_start_service -7  connectionservice
+			svp_start_service -7  miniplayerservice
+			
+			#app-run 14  StartInShell	1	1	#APP_PLATFORM_CONST_LAUNCHER
+	
+	
+	
+			svp_drop_caches
+			# Start SVP APP (system apps)
+			#app-run app-id app-mode app-req-tye app-fg/bg(1:fg,0:bg) ->wjq
+			app-run 12  StartInShell	1	1	#vpanel
+			#app-run 19  StartInShell	1	1	#logo
+
+			app-run 13  StartInShell	1	0	#APP_PLATFORM_CONST_STATUSBAR
+			app-run 16  StartInShell	1	0	#APP_PLATFORM_CONST_TIP		
+			app-run 14  StartInShell	1	1	#APP_PLATFORM_CONST_LAUNCHER
+			app-run 18  StartInShell	1	0	#APP_PLATFORM_CONST_CAMERA
+		fi
+		;;
+	stop)
+		echo "[SVP] Stopping ..."
+		killall procguard
+		;;
+	step1)
+		echo "[SVP] Step1 ..."
+		svp_step1
+		;;
+	step2)
+		echo "[SVP] Step2 ..."
+		svp_step2
+		;;
+	*)
+		echo "Usage: /svp/etc/init.sh {start|stop|step1|step2}"
+		exit 1
+esac
+
+exit 0
+
+
+########## ./etc/appstart.sh  (142 bytes)
+#!/bin/sh
+#Import environment
+#. /svp/etc/env_setup.sh
+
+#Import funcitons
+. /svp/etc/func_startstop.sh
+
+svp_start_app $1 $2 $3 $4 $5
+
+exit 0
+
+
+
+########## ./etc/update.sh  (2394 bytes)
+#!/bin/sh
+
+# Import environment
+. /svp/etc/env_setup.sh
+
+# Import funcitons
+. /svp/etc/func_env.sh
+. /svp/etc/func_startstop.sh
+
+case "$1" in
+	apps_only)
+		echo "[SVP] Update APPs ..."
+		export SVP_DEBUG_OUTPUT="console"
+		svp_env_update
+
+		svp_start_service -12 persistservice
+		svp_start_service -10 ilmservice
+		svp_start_service -10 appmgr
+		svp_start_service -15 devicemgr
+
+		#echo "[SVP] updateservice 1"
+		if [ $SVP_UPDATE_SW_CLEAN = "YES" ]; then
+			svp_start_service -10 updateservice 1
+		else
+			svp_start_service -10 updateservice 32
+		fi
+		;;
+	rmt_only)
+		echo "[SVP] Update RMT ..."
+		export SVP_DEBUG_OUTPUT="console"
+		svp_env_update_rmt
+
+		svp_start_service -12 persistservice
+		svp_start_service -10 ilmservice
+		svp_start_service -10 appmgr
+		svp_start_service -14 devicemgr
+
+		#echo "[SVP] updateservice 2"
+		svp_start_service -10 updateservice 2
+		;;
+	apps_and_rmt)
+		echo "[SVP] Update APPs & RMT ..."
+		export SVP_DEBUG_OUTPUT="console"
+		svp_env_update
+
+		svp_start_service -12 persistservice
+		svp_start_service -10 ilmservice
+		svp_start_service -10 appmgr
+		svp_start_service -15 devicemgr
+
+		#echo "[SVP] updateservice 3"
+		if [ $SVP_UPDATE_SW_CLEAN = "YES" ]; then
+			svp_start_service -10 updateservice 3
+		else
+			svp_start_service -10 updateservice 34
+		fi
+		;;
+	dsp_only)
+		echo "[SVP] Update dsp fireware ..."
+		export SVP_DEBUG_OUTPUT="console"
+		svp_env_update_rmt
+
+		svp_start_service -12 persistservice
+		svp_start_service -10 ilmservice
+		svp_start_service -10 appmgr
+		svp_start_service -14 devicemgr
+
+		svp_start_service -10 updateservice 64
+		;;
+	gps_only)
+		echo "[SVP] Update gps ..."
+		export SVP_DEBUG_OUTPUT="console"
+		svp_env_update_rmt
+
+		svp_start_service -12 persistservice
+		svp_start_service -10 ilmservice
+		svp_start_service -10 appmgr
+		svp_start_service -14 devicemgr
+
+		svp_start_service -10 updateservice 128
+	;;
+	factory_reset)
+		#kill process
+		killall procguard
+		fuser -mk ${SVP_USER_ROOT_PATH}
+		sleep 2
+
+		#rm files:If process not exit yet, umount will fail. So remove first.
+		rm -rf ${SVP_USER_ROOT_PATH}/* 
+
+		umount ${SVP_DATA_PARTITION}
+		mkfs.ext4 ${SVP_DATA_PARTITION}
+		sync
+		;;
+	*)
+		echo "Usage: /svp/etc/update.sh {apps_only|rmt_only|apps_and_rmt|factory_reset}"
+		exit 1
+esac
+
+svp_start_service -15 audiomgr
+svp_start_service -15 powermgr
+svp_start_service -15 sourcemgr
+svp_start_service -6  promptservice
+
+
+exit 0
+
+
+########## ./etc/env_setup.sh  (3624 bytes)
+#!/bin/sh
+
+#SVP Version
+export SVP_VERSION="SVP30.6@C1"
+export SVP_BUILD_DATE="2017-04-18 17:35:00+08:00"
+export SOFTWARE_VERSION="0357"
+export APP_VERSION="MP2017_PQ_07.30_180328__C"
+export BT_NAME="VW"
+
+export SVP_ROLL_BACK_NO="1"
+export APP_ROLL_BACK_NO="1"
+export BT_ROLL_BACK_NO="1"
+
+#When Update SW to clean save data
+export SVP_UPDATE_SW_CLEAN="NO"
+#export SVP_UPDATE_SW_CLEAN="YES"
+
+if [ -f /storage/data/debug.flag ];then
+	export APP_VERSION=${APP_VERSION}"-trace"
+		if [ -f /svp/etc/env_trace_2_usb.sh ];then
+		. /svp/etc/env_trace_2_usb.sh
+		export APP_VERSION=${APP_VERSION}${SW_STATUS}"-usb"
+	fi
+fi
+
+#mount /svp/ -o rw,remount
+#mount /storage/ -o rw,remount
+mount /storage/data -o rw,remount
+
+#SVP Environment
+export SVP_ROOT_PATH=/svp
+export SVP_MEDIA_PATH=/media
+export SVP_STORAGE_PATH=/storage
+
+export SVP_ETC_PATH=${SVP_ROOT_PATH}/etc
+export SVP_RES_PATH=${SVP_ROOT_PATH}/share
+export SVP_FONT_PATH=${SVP_RES_PATH}/fonts
+export SVP_THEME_PATH=${SVP_RES_PATH}/theme
+export SVP_WALLPAPER_PATH=${SVP_RES_PATH}/wallpaper
+export SVP_SOUND_PATH=${SVP_RES_PATH}/sound
+
+export SVP_TMP_PATH=/tmp/run
+export SVP_TMP_STORAGE_PATH=${SVP_TMP_PATH}/storage
+export SVP_TMP_DATA_PATH=${SVP_TMP_STORAGE_PATH}/data
+#
+export SVP_TMP_NORMAL_START_PATH=${SVP_TMP_PATH}/normal_start
+
+# Read Only Path: (Read + Write Under Update Mode)
+export SVP_SYS_APP_INSTALL_PATH=${SVP_STORAGE_PATH}/app
+export SVP_SYS_DATA_PATH=${SVP_STORAGE_PATH}
+
+export SVP_UPDATE_PATH=${SVP_STORAGE_PATH}/update
+export SVP_APP_PKG_PATH=${SVP_UPDATE_PATH}/app-pkg
+export SVP_RMT_PKG_FILE=${SVP_UPDATE_PATH}/radio.bin
+export SVP_RMT_DSP_FILE=${SVP_UPDATE_PATH}/dsp.bin
+export SVP_RMT_GPS_BOOT_FILE=${SVP_UPDATE_PATH}/gps-boot.bin
+export SVP_RMT_GPS_UPGRADE_FILE=${SVP_UPDATE_PATH}/gps-upgrade.bin
+
+# Read + Write Path:
+export SVP_DATA_PARTITION=/dev/mmcblk0p4
+export SVP_USER_ROOT_PATH=${SVP_STORAGE_PATH}/data
+export SVP_USER_APP_INSTALL_PATH=${SVP_USER_ROOT_PATH}/app
+export SVP_USER_DATA_PATH=${SVP_USER_ROOT_PATH}/data
+export SVP_USER_ETC_PATH=${SVP_USER_ROOT_PATH}/etc
+
+#Qt5 Environment
+export QT_QPA_FONTDIR=${SVP_FONT_PATH}
+export QT_WAYLAND_SHELL_INTEGRATION=ivi-shell
+
+#iconv Environment
+export LD_PRELOAD=/usr/lib/preloadable_libiconv.so
+
+
+#PATH Environment
+export LD_LIBRARY_PATH=${SVP_ROOT_PATH}/lib:${LD_LIBRARY_PATH}
+export PATH=${SVP_ROOT_PATH}/bin:${SVP_ROOT_PATH}/etc:${PATH}
+
+#GStreamer Environment
+export GST_REGISTRY=/storage/data/.gstreamer-0.10/registry.arm.bin
+
+#Cidana SDK Environment
+CIDANA_SDK_DIR=/svp/lib
+export PATH=${PATH}:${CIDANA_SDK_DIR}/gstreamer/bin
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${CIDANA_SDK_DIR}/gstreamer/libs
+export GST_PLUGIN_SYSTEM_PATH_1_0=${CIDANA_SDK_DIR}/gstreamer/libs/gstreamer-1.0
+export GST_PLUGIN_SCANNER=${CIDANA_SDK_DIR}/gstreamer/libs/gstreamer1.2/gstreamer-1.0/gst-plugin-scanner
+
+#weston Environment
+. /home/root/.profile
+
+#g_get_user_cache_dir Environment
+export XDG_CACHE_HOME=/tmp/.cache
+#rm -rf ${XDG_CACHE_HOME}
+mkdir -p ${XDG_CACHE_HOME}
+
+#base on TI's suggestion add below configuration to fix player paused beyond 15s IPU2 will close automatically issue
+echo on > /sys/bus/platform/devices/55020000.ipu/power/control
+
+#Debug Output: {"console" | "" | "none" | "null" | "kmsg" | "syslog" | "file"}
+# Console: "console" | ""
+# Disable: "none" | "null"
+# Syslog: "kmsg" | "syslog"
+# File: "file" need to be used along with --debug-output-file "log_file_name"
+#       *file location must be accessable before start services / apps
+export SVP_DEBUG_OUTPUT="none"
+
+#Enable cgroup
+export SVP_ENABLE_CGROUP="true"
+
+#Enable procguard (only for services)
+export SVP_ENABLE_PROCGUARD="true"
+
+
+########## ./etc/source.conf  (10575 bytes)
+# [SRC_COUND]
+[SRC_COUNT] 41
+
+# [SRC_ATTRIB_TABLE]
+# SID: App Source ID (1 ~ n: defined for different app usages)
+# AID: Audio Source ID (0 ~ n: defined in radio sw)
+# PRI: Source Priority (0: Highest ~ 5: Lowest)
+#  FG: Foreground Source (1: FG; 2: BG)
+#  CA: Config Action (-1: Pause, -2: Stop)
+
+# CarPlay navi与本地 navi 设为共存，carplayservice另外有接口和导航app处理路线规划冲突。----> J71R出现本地导航和carplay导航声音同时出来的现象，source逻辑恢复为不共存。2016-01-16
+# CarPlay内部source除了电话之外，其他的共存，手机/carplayservice处理内部的声音冲突。
+# CarPlay协议要求打电话时，carplay导航音也可以出来。2015-12-16
+
+# 蓝牙私密与蓝牙铃声设为不共存。（私密时有第二个来电，在手机端播放）
+# CarPlay电话与CarPlay铃声设为共存，当第2个CarPlay来电时，车机也可以播放CarPlay铃声（导航通道）。
+
+# CarLife在语音识别时可能还会有几秒钟的导航提示音过来，所以不能由手机自己处理声音冲突。 2016-05-17
+
+# [SRC_CONFIG_TABLE]
+# 1: Conflict; 0: Coexist; 127: Invalid
+
+#[SID, AID, PRI,  FG,  CA]              [TUNER]  [DISC] [AUX_0] [AUX_1]  [VR]    [RVC]   [TEL]  [TERM]  [BTA]  [IPOD_0][IPOD_1] [ALARM] [PROMPT] [SD_0] [SD_1]  [USB_0] [USB_1]  [SMS]   [TXT]  [NAVI] [RING] [STREAM][TEL_P][QQMUSIC] [CP_MEDIA] [CP_SIRI] [CP_NAVI] [CP_PHONE] [CP_RING]
+   1,   0,   5,   0,  -1;    [TUNER ]     127
+   2,   1,   5,   0,  -1;    [DISC  ]      1      127
+   3,   5,   5,   0,  -1;    [AUX_0 ]      1       1      127
+   4,   5,   5,   0,  -1;    [AUX_1 ]      1       1       1     127
+   5,  25,   3,   1,  -1;    [VR    ]      1       1       1       1      127
+   6,  14,   1,   1,  -1;    [RVC   ]      0       0       0       0       1      127
+   7,  10,   2,   1,  -1;    [TEL   ]      1       1       1       1       1       0      127
+   8,   3,   5,   0,  -1;    [TERM  ]      1       1       1       1       1       0       1      127
+   9,   6,   5,   0,  -1;    [BTA   ]      1       1       1       1       1       0       1       1      127
+  10,   4,   5,   0,  -1;    [IPOD_0]      1       1       1       1       1       0       1       1       1      127
+  11,   4,   5,   0,  -1;    [IPOD_1]      1       1       1       1       1       0       1       1       1       1      127
+  12,  12,   0,   1,  -2;    [ALARM ]      1       1       1       1       1       1       1       1       1       1       1      127
+  13,  12,   4,   1,  -2;    [PROMPT]      0       0       0       0       0       0       0       0       0       0       0       0      127
+  14,   3,   5,   0,  -1;    [SD_0  ]      1       1       1       1       1       0       1       1       1       1       1       1       0      127
+  15,   3,   5,   0,  -1;    [SD_1  ]      1       1       1       1       1       0       1       1       1       1       1       1       0       1      127
+  16,   3,   5,   0,  -1;    [USB_0 ]      1       1       1       1       1       0       1       1       1       1       1       1       0       1       1      127
+  17,   3,   5,   0,  -1;    [USB_1 ]      1       1       1       1       1       0       1       1       1       1       1       1       0       1       1       1      127
+  18,  26,   5,   1,  -1;    [SMS   ]      0       0       0       0       1       1       1       0       0       0       0       1       0       0       0       0       0      127
+  19,  26,   5,   1,  -1;    [TXT   ]      0       0       0       0       1       1       1       0       0       0       0       1       0       0       0       0       0       1      127
+  20,  26,   4,   1,  -2;    [NAVI  ]      0       0       0       0       1       1       1       0       0       0       0       1       0       0       0       0       0       1       1      127
+  21,  15,   3,   1,  -2;    [RING  ]      1       1       1       1       1       0       1       1       1       1       1       1       0       1       1       1       1       1       1       1      127
+  22,   3,   5,   0,  -1;    [STREAM]      1       1       1       1       1       0       1       1       1       1       1       1       0       1       1       1       1       0       0       0       1      127
+  23,  10,   2,   1,  -1;    [TEL_P ]      1       1       1       1       1       0       0       1       1       1       1       1       0       1       1       1       1       1       1       1       1       1      127
+  24,   3,   5,   0,  -1;    [QQMUSIC]     1       1       1       1       1       0       1       1       1       1       1       1       0       1       1       1       1       0       0       0       1       1       1      127
+  25,   3,   5,   0,  -1;    [CP_MEDIA]    1       1       1       1       1       0       1       1       1       1       1       1       0       1       1       1       1       0       0       0       1       1       1       1      127
+  26,  27,   3,   1,  -1;    [CP_SIRI]     1       1       1       1       1       1       1       1       1       1       1       1       0       1       1       1       1       1       1       1       1       1       1       1       0      127
+  27,  28,   4,   1,  -2;    [CP_NAVI]     0       0       0       0       1       0       0       0       0       0       0       1       0       0       0       0       0       1       1       1       0       0       0       0       0       0       127
+  28,  9,    2,   1,  -1;    [CP_PHONE]    1       1       1       1       1       0       1       1       1       1       1       1       0       1       1       1       1       1       1       1       0       1       1       1       1       1        0          127
+  29,  29,   3,   1,  -1;    [CP_RING]     1       1       1       1       1       0       0       1       1       1       1       1       0       1       1       1       1       1       1       1       0       1       0       1       1       0        0          0         127
+  30,  3,    5,   0,  -1;    [AA_MEDIA]    1       1       1       1       1       0       1       1       1       1       1       1       0       1       1       1       1       0       0       0       1       1       1       1       1       1        0          1         1         127
+  31,  30,   4,   1,  -2;    [AA_NAVI]     0       0       0       0       1       1       1       0       0       0       0       1       0       0       0       0       0       1       1       1       1       0       0       0       0       0        1          1         1          0        127
+  32,  31,   4,   1,  -2;    [AA_SYS]      0       0       0       0       1       1       1       0       0       0       0       1       0       0       0       0       0       1       1       1       1       0       1       0       0       0        1          1         1          0        0          127
+  33,  32,   3,   1,  -2;    [AA_ASR]      1       1       1       1       1       1       1       1       1       1       1       1       0       1       1       1       1       1       1       1       1       1       1       1       1       1        1          1         1          0        0          0       127
+  34,  3,    5,   0,  -1;    [CL_MEDIA]    1       1       1       1       1       0       1       1       1       1       1       1       0       1       1       1       1       0       0       0       1       1       1       1       1       1        0          1         1          1        0          0       1        127
+  35,  33,   4,   1,  -2;    [CL_NAVI]     0       0       0       0       1       0       1       0       0       0       0       1       0       0       0       0       0       1       1       1       1       0       0       0       0       0        1          1         1          0        1          0       1        0          127
+  36,  34,   4,   1,  -2;    [CL_PROMPT]   0       0       0       0       1       1       1       0       0       0       0       1       0       0       0       0       0       1       1       1       1       0       1       0       0       0        1          1         1          0        0          0       1        0          0          127
+  37,  35,   3,   1,  -2;    [CL_ASR]      1       1       1       1       1       1       1       1       1       1       1       1       0       1       1       1       1       1       1       1       1       1       1       1       1       1        1          1         1          1        1          1       1        1          1          1          127
+  38,   5,   2,   1,  -1;    [BOX_PHONE]   1       1       1       1       1       0       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1        1          1         1          1        1          1       1        1          1          1          1         127
+  39,  18,   5,   0,  -1;    [NO_MEDIA]    1       1       1       1       1       0       1       1       1       1       1       1       0       1       1       1       1       0       0       0       1       1       1       1       1       1        0          1         1          1        0          0       1        1          0          0          1         1          127          
+  40,  14,   1,   1,  -1;    [AUD_LOWERING]0       0       0       0       1       0       0       0       0       0       0       0       0       0       0       0       0       1       1       1       0       0       0       0       0       1        0          0         0          0        1          1       1        0          0          1          1         0          0         127    
+  41,  36,   3,   1,  -1;    [ML_ASR]      1       1       1       1       1       1       1       1       1       1       1       1       0       1       1       1       1       1       1       1       1       1       1       1       1       1        1          1         1          1        1          1       1        0          1          1          1         1          1         1             127    
+
+#[SID, AID, PRI,  FG,  CA]              [TUNER]  [DISC] [AUX_0] [AUX_1]  [VR]    [RVC]   [TEL]  [TERM]  [BTA]  [IPOD_0][IPOD_1] [ALARM] [PROMPT] [SD_0] [SD_1]  [USB_0] [USB_1]  [SMS]   [TXT]  [NAVI] [RING] [STREAM][TEL_P][QQMUSIC] [CP_MEDIA] [CP_SIRI] [CP_NAVI] [CP_PHONE] [CP_RING] [AA_MEDIA][AA_NAVI] [AA_SYS] [AA_ASR] [CL_MEDIA] [CL_NAVI] [CL_PROMPT] [CL_ASR] [BOX_PHONE] [NO_MEDIA][AUD_LOWERING][ML_ASR]
+
+
+
+########## ./etc/ilm.conf  (2111 bytes)
+# iLM layer configuration file v1.0
+
+[ILM_CONF]
+# Default layer for apps not in configuration (dynamic layer)
+DEFAULT_LAYER_ID = 3000
+# Layer for video output
+VIDEO_LAYER_ID = 2000
+
+[ILM_LAYER_IDS]
+LAYER_ID = 1000     // For desktop (wallpaper & vpanel)
+LAYER_ID = 2000     // For mediaplay / carplay / mirrorlink
+LAYER_ID = 3000     // For normal apps
+LAYER_ID = 4000     // For popup apps
+LAYER_ID = 5000     // For menu & tips
+LAYER_ID = 6000     // For on / off animations
+LAYER_ID = 7000     // For rvc video & rvc app
+
+[ILM_LAYER_ORDER]
+LAYER_ORDER = 1000,2000,3000,4000,5000,6000,7000    // Layer render order
+
+# Surfaces on Layer 1000
+#SURFACE_ID = 1001          // APP_PLATFORM_CONST_VPANEL
+
+# Surfaces on Layer 2000
+# Video Layers with surface_id = 20000000 + pid 
+
+# Surfaces on Layer 3000
+# App Layer: Surfaces not in render order will be attached to this layer
+
+# Surfaces on Layer 4000
+#SURFACE_ID = 4001          // APP_PLATFORM_CONST_MEDIA_MENU
+
+# Surfaces on Layer 5000
+#SURFACE_ID = 5001          // APP_PLATFORM_CONST_IME
+#SURFACE_ID = 5002          // APP_PLATFORM_CONST_LOCK_SCREEN
+#SURFACE_ID = 5003          // APP_PLATFORM_CONST_TIP
+#SURFACE_ID = 5004          // APP_PLATFORM_CONST_STATUSBAR
+
+# Surfaces on Layer 6000
+#SURFACE_ID = 6001          // APP_PLATFORM_CLOSESCREEN
+#SURFACE_ID = 6002          // APP_PLATFORM_CONST_WELCOME
+
+# Surfaces on Layer 7000
+#SURFACE_ID = 7001          // RVC Video (Noused)
+#SURFACE_ID = 7002          // APP_PLATFORM_CONST_CAMERA
+
+[ILM_SURFACE_ORDER]
+# Fixed render order for layer n
+SURFACE_ORDER_1000 = 1001               // Surface render order for layer 1000
+#SURFACE_ORDER_2000 = 20000000 + pid    // Surface render order for layer 2000
+#SURFACE_ORDER_3000 = 3001              // Surface render order for layer 3000
+SURFACE_ORDER_4000 = 4001               // Surface render order for layer 4000
+SURFACE_ORDER_5000 = 5002,5004,5003     // Surface render order for layer 5000 Modify by WJQ
+SURFACE_ORDER_6000 = 6001,6002          // Surface render order for layer 6000
+SURFACE_ORDER_7000 = 7002               // Surface render order for layer 7000
+
+
+########## ./share/AccountInfo.txt  (597 bytes)
+﻿######################################################
+
+#示例代码中从该文件解析获取配置信息，运行示例代码前请先填写正确的授权信息#
+
+#该配置文件中以“#”作为注释符号，空行不解析，填写时只要在需要填写的字段后面填写即可#
+
+######################################################
+
+
+
+#应用程序序号
+
+appKey=985d5402
+
+
+
+#开发者密钥
+
+developerKey=07df07b419679ecce5684a5418c8b919
+
+
+
+#灵云云服务的接口地址 
+
+cloudUrl=http://test.api.hcicloud.com:8888
+
+
+
+#需要运行的灵云能力
+
+capKey=hwr.local.letter
