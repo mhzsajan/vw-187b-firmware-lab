@@ -43,6 +43,7 @@ docs/
   desay-hardware.md          full BOM / boot chain / software stack / capability matrix
   desay-unit-identity.md     the installed unit (SW0317) and its engineering mode
   desay-container.md         .bin container layout, offsets, extraction recipe
+  why-no-custom-firmware.md  why the Desay scene doesn't exist — and the false "WinCE" explanation
   noname-platform.md         tar package anatomy, AA stack, theme mechanism
   library-manifest.md        the local firmware library layout + hashes
   assets/skoda-logo-preview.png   decoded Skoda splash from logoSK tar

@@ -68,6 +68,9 @@ other 187B revision, not this one (this unit is 1 GB).
 6. Does a **Skoda-branded G5 build** (`SK_MP2017*.kzb`) exist on the aftermarket to obtain?
 7. On-screen checksums `0xc473` (radio SW) / `0xda8c` (bootloader) — algorithm unknown; they are
    not raw header fields and not CRC16 of the obvious windows.
+8. Does **any** Desay 187B revision actually run Windows CE? The common online explanation says
+   so; this unit is Linux (proof in `docs/why-no-custom-firmware.md`). Unverified whether a WinCE
+   revision exists under a different HW/SW number.
 
 ## 4. Where the data lives (not in this repo)
 
