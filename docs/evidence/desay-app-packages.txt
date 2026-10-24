@@ -1,0 +1,87 @@
+﻿==============================================================================
+app .pkg members
+==============================================================================
+
+sv.g5.mib2.appconnect-1.0.0.pkg  [2,499,590 B compressed -> 3,932,160 B]  inner=tar
+  tar members=13; sample: ['manifest.xml', 'bin', 'bin/lrz', 'bin/vw_mp2017.kzb.cfg', 'bin/appconnect', 'bin/VW_MP2017.kzb', 'res', 'res/VW_QR_code.png', 'res/carplay_test_wav', 'res/carplay_test_wav/pink_noise_16k_16bit.wav', 'res/carplay_test_wav/pink_noise_8k_16bit.wav', 'res/QR_Code_FAW_VW.png']
+  logo/theme-ish (5): ['bin/vw_mp2017.kzb.cfg', 'bin/VW_MP2017.kzb', 'res/VW_QR_code.png', 'res/QR_Code_FAW_VW.png', 'res/VW_MP2017.kzb']
+
+sv.g5.mib2.bluetooth-1.0.0.pkg  [2,257,062 B compressed -> 7,454,720 B]  inner=tar
+  tar members=11; sample: ['manifest.xml', 'bin', 'bin/VW_MP2017.kzb.cfg', 'bin/VW_MP2017.kzb', 'bin/bluetooth', 'res', 'res/SpeedDial_Mobile-06.png', 'res/SpeedDial_General-06.png', 'res/SpeedDial_Office-06.png', 'res/VW_MP2017.kzb', 'res/SpeedDial_Home-06.png']
+  logo/theme-ish (7): ['bin/VW_MP2017.kzb.cfg', 'bin/VW_MP2017.kzb', 'res/SpeedDial_Mobile-06.png', 'res/SpeedDial_General-06.png', 'res/SpeedDial_Office-06.png', 'res/VW_MP2017.kzb', 'res/SpeedDial_Home-06.png']
+
+sv.g5.mib2.camera-1.0.0.pkg  [5,365,961 B compressed -> 6,164,480 B]  inner=tar
+  tar members=6; sample: ['manifest.xml', 'bin', 'bin/VW_MP2017.kzb.cfg', 'bin/camera', 'res', 'res/VW_MP2017.kzb']
+  logo/theme-ish (2): ['bin/VW_MP2017.kzb.cfg', 'res/VW_MP2017.kzb']
+
+sv.g5.mib2.carmenu-1.0.0.pkg  [3,756,816 B compressed -> 6,440,960 B]  inner=tar
+  tar members=6; sample: ['manifest.xml', 'bin', 'bin/VW_MP2017.kzb.cfg', 'bin/carmenu', 'res', 'res/VW_MP2017.kzb']
+  logo/theme-ish (2): ['bin/VW_MP2017.kzb.cfg', 'res/VW_MP2017.kzb']
+
+sv.g5.mib2.climate-1.0.0.pkg  [24,894,291 B compressed -> 27,535,360 B]  inner=tar
+  tar members=6; sample: ['manifest.xml', 'bin', 'bin/climate', 'bin/VW_MP2017.kzb.cfg', 'res', 'res/VW_MP2017.kzb']
+  logo/theme-ish (2): ['bin/VW_MP2017.kzb.cfg', 'res/VW_MP2017.kzb']
+
+sv.g5.mib2.engineering-1.0.0.pkg  [473,754 B compressed -> 1,740,800 B]  inner=tar
+  tar members=6; sample: ['manifest.xml', 'bin', 'bin/VW_MP2017.kzb.cfg', 'bin/engineering', 'res', 'res/VW_MP2017.kzb']
+  logo/theme-ish (2): ['bin/VW_MP2017.kzb.cfg', 'res/VW_MP2017.kzb']
+
+sv.g5.mib2.launcher-1.0.0.pkg  [115,646 B compressed -> 317,440 B]  inner=tar
+  tar members=3; sample: ['manifest.xml', 'bin', 'bin/launcher']
+  logo/theme-ish (0): []
+
+sv.g5.mib2.lockscreen-1.0.0.pkg  [497,704 B compressed -> 655,360 B]  inner=tar
+  tar members=6; sample: ['manifest.xml', 'bin', 'bin/VW_MP2017.kzb.cfg', 'bin/lockscreen', 'res', 'res/VW_MP2017.kzb']
+  logo/theme-ish (2): ['bin/VW_MP2017.kzb.cfg', 'res/VW_MP2017.kzb']
+
+sv.g5.mib2.mediaplayer-1.0.0.pkg  [1,023,286 B compressed -> 3,297,280 B]  inner=tar
+  tar members=6; sample: ['manifest.xml', 'bin', 'bin/VW_MP2017_MEDIA.kzb.cfg', 'bin/mediaplayer', 'res', 'res/VW_MP2017_MEDIA.kzb']
+  logo/theme-ish (2): ['bin/VW_MP2017_MEDIA.kzb.cfg', 'res/VW_MP2017_MEDIA.kzb']
+
+sv.g5.mib2.production-1.0.0.pkg  [257,952 B compressed -> 983,040 B]  inner=tar
+  tar members=7; sample: ['manifest.xml', 'bin', 'bin/VW_MP2017.kzb.cfg', 'bin/engineering', 'bin/production', 'res', 'res/VW_MP2017.kzb']
+  logo/theme-ish (2): ['bin/VW_MP2017.kzb.cfg', 'res/VW_MP2017.kzb']
+
+sv.g5.mib2.radio-1.0.0.pkg  [465,853 B compressed -> 1,556,480 B]  inner=tar
+  tar members=6; sample: ['manifest.xml', 'bin', 'bin/VW_MP2017.kzb.cfg', 'bin/radio', 'res', 'res/VW_MP2017_RADIO.kzb']
+  logo/theme-ish (2): ['bin/VW_MP2017.kzb.cfg', 'res/VW_MP2017_RADIO.kzb']
+
+sv.g5.mib2.setting-1.0.0.pkg  [4,898,043 B compressed -> 7,137,280 B]  inner=tar
+  tar members=8; sample: ['manifest.xml', 'bin', 'bin/VW_MP2017.kzb.cfg', 'bin/setting', 'res', 'res/copyright_cn.txt', 'res/VW_MP2017.kzb', 'res/copyright_en.txt']
+  logo/theme-ish (2): ['bin/VW_MP2017.kzb.cfg', 'res/VW_MP2017.kzb']
+
+sv.g5.mib2.statusbar-1.0.0.pkg  [161,299 B compressed -> 368,640 B]  inner=tar
+  tar members=6; sample: ['manifest.xml', 'bin', 'bin/VW_MP2017.kzb.cfg', 'bin/statusbar', 'res', 'res/VW_MP2017.kzb']
+  logo/theme-ish (2): ['bin/VW_MP2017.kzb.cfg', 'res/VW_MP2017.kzb']
+
+sv.g5.mib2.toptip-1.0.0.pkg  [5,648,122 B compressed -> 6,942,720 B]  inner=tar
+  tar members=9; sample: ['manifest.xml', 'bin', 'bin/VW_MP2017.kzb.cfg', 'bin/toptip', 'res', 'res/SpeedDial_Mobile-06.png', 'res/SpeedDial_Office-06.png', 'res/VW_MP2017.kzb', 'res/SpeedDial_Home-06.png']
+  logo/theme-ish (5): ['bin/VW_MP2017.kzb.cfg', 'res/SpeedDial_Mobile-06.png', 'res/SpeedDial_Office-06.png', 'res/VW_MP2017.kzb', 'res/SpeedDial_Home-06.png']
+
+sv.g5.mib2.update-1.0.0.pkg  [192,582 B compressed -> 573,440 B]  inner=tar
+  tar members=6; sample: ['manifest.xml', 'bin', 'bin/update', 'bin/VW_MP2017.kzb.cfg', 'res', 'res/VW_MP2017.kzb']
+  logo/theme-ish (2): ['bin/VW_MP2017.kzb.cfg', 'res/VW_MP2017.kzb']
+
+sv.g5.mib2.vpanel-1.0.0.pkg  [31,083 B compressed -> 122,880 B]  inner=tar
+  tar members=6; sample: ['manifest.xml', 'bin', 'bin/vpanel', 'bin/VW_MP2017_Vpanel.kzb.cfg', 'res', 'res/VW_MP2017_Vpanel.kzb']
+  logo/theme-ish (2): ['bin/VW_MP2017_Vpanel.kzb.cfg', 'res/VW_MP2017_Vpanel.kzb']
+
+==============================================================================
+splash / brand search across components
+==============================================================================
+
+svp.bin (83,806,203 bytes):
+  VW_          count=   14 first@0x72c427  ".......}..~....r....&....-T7.s.~yoQ..n..VW_.....`dv..o...VK...`U....~.[....*......8G..a...Y1..(v...w"
+  magic PNG occurrences=9
+  magic JPEG occurrences=16
+  magic BMP? occurrences=1056
+
+os.bin (83,918,553 bytes):
+  VW_          count=    8 first@0x8958540  "....m.~.7.l.6G.....d<#.6D.."P"J#.SP"J.IDVW_.,.]......v..$j....`I.....m....\18e...AF"AF6g:e....W?.ed."
+  magic JPEG occurrences=13
+  magic BMP? occurrences=981
+
+u-boot 'splashimage' env: not found
+  os.bin contains splash: 0 times
+  os.bin contains bootlogo: 0 times
+  os.bin contains logo: 0 times

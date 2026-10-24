@@ -1,0 +1,17 @@
+2499590	./sv.g5.mib2.appconnect-1.0.0.pkg
+2257062	./sv.g5.mib2.bluetooth-1.0.0.pkg
+5365961	./sv.g5.mib2.camera-1.0.0.pkg
+3756816	./sv.g5.mib2.carmenu-1.0.0.pkg
+24894291	./sv.g5.mib2.climate-1.0.0.pkg
+473754	./sv.g5.mib2.engineering-1.0.0.pkg
+115646	./sv.g5.mib2.launcher-1.0.0.pkg
+497704	./sv.g5.mib2.lockscreen-1.0.0.pkg
+1023286	./sv.g5.mib2.mediaplayer-1.0.0.pkg
+257952	./sv.g5.mib2.production-1.0.0.pkg
+465853	./sv.g5.mib2.radio-1.0.0.pkg
+4898043	./sv.g5.mib2.setting-1.0.0.pkg
+161299	./sv.g5.mib2.statusbar-1.0.0.pkg
+5648122	./sv.g5.mib2.toptip-1.0.0.pkg
+192582	./sv.g5.mib2.update-1.0.0.pkg
+31083	./sv.g5.mib2.vpanel-1.0.0.pkg
+1029	./install.lst

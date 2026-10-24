@@ -1,0 +1,319 @@
+# Desay SW0317 composition dump  (222,740,754 bytes)
+
+============================================================================
+## app-pkg.bin  @0x51ec7fb .. 0x8402309  (52,517,646 bytes)
+============================================================================
+members=17
+top-level: [('.', 17)]
+ext hist: [('.pkg', 16), ('.lst', 1)]
+biggest 30:
+    24,894,291  ./sv.g5.mib2.climate-1.0.0.pkg
+     5,648,122  ./sv.g5.mib2.toptip-1.0.0.pkg
+     5,365,961  ./sv.g5.mib2.camera-1.0.0.pkg
+     4,898,043  ./sv.g5.mib2.setting-1.0.0.pkg
+     3,756,816  ./sv.g5.mib2.carmenu-1.0.0.pkg
+     2,499,590  ./sv.g5.mib2.appconnect-1.0.0.pkg
+     2,257,062  ./sv.g5.mib2.bluetooth-1.0.0.pkg
+     1,023,286  ./sv.g5.mib2.mediaplayer-1.0.0.pkg
+       497,704  ./sv.g5.mib2.lockscreen-1.0.0.pkg
+       473,754  ./sv.g5.mib2.engineering-1.0.0.pkg
+       465,853  ./sv.g5.mib2.radio-1.0.0.pkg
+       257,952  ./sv.g5.mib2.production-1.0.0.pkg
+       192,582  ./sv.g5.mib2.update-1.0.0.pkg
+       161,299  ./sv.g5.mib2.statusbar-1.0.0.pkg
+       115,646  ./sv.g5.mib2.launcher-1.0.0.pkg
+        31,083  ./sv.g5.mib2.vpanel-1.0.0.pkg
+         1,029  ./install.lst
+keyword-matching names (up to 120):
+  ./sv.g5.mib2.vpanel-1.0.0.pkg
+(total keyword matches: 1)
+
+============================================================================
+## os.bin nested pack @0x8464239
+============================================================================
+   rec          value          hex  name           version
+0x0000              3 0x00000003  G5-R1          
+
+sub-object data:
+  G5-R1          val=0x00000003 -> try 0x00001003: zeros
+  G5-R1          val=0x00000003 -> try 0x00000003: 81 02 00 00 00 36 52 44
+
+uImage objects inside os.bin:
+  rel=0x00000a00 abs=0x08464c39 size=3,722,576 load=0x80008000 os=5 arch=2 type=2 name='Linux-3.14.57'
+  rel=0x0051fe00 abs=0x08984039 size=315,484 load=0x80800000 os=17 arch=2 type=5 name='U-Boot 2014.07-00212-gd0650b9 fo'
+
+--- strings from 'Linux-3.14.57' (3,722,576 bytes) saved to Linux-3.14.57.bin
+   stack-protector: Kernel stack is corrupted
+   linux,initrd-start
+   %Mj#%Mg5&M
+   #eQDRDae
+   panel-dp 
+   board.brl_nbchords.\
+   serial8250_do_startu"
+   cubic.hystart_ack"
+   |G5mis#DJ
+   /g5r1/boQ*-%
+   RVC_STATUS
+   G_TUNER)|
+   ?WUVAk(RDA*
+   ipv6/addrconf_cor
+   hhJbG5hO
+   static_key_initialized
+   lNGRsta1`
+   )console=ttyS2,115200n8 elevator=noop root=/dev/mmcblk0p1 rw
+
+--- strings from 'U-Boot 2014.07-00212-gd0650b9 fo' (315,484 bytes) saved to U-Boot_2014.07-00212-gd0650b9_fo.bin
+   xhci_address_device
+   xhci_setup_addressable_virt_dev
+   bootcmd=run findfdt; run mmcboot;setenv mmcdev 1; setenv bootpart 1:2; setenv mmcroot /dev/mmcblk1p2 rw; run mmcboot;run loadqspi
+   board=mib2_g
+   board_name=mib2_g
+   loadaddr=0x82000000
+   kernel_addr_r=0x82000000
+   fdtaddr=0x88000000
+   fdt_addr_r=0x88000000
+   rdaddr=0x88080000
+   ramdisk_addr_r=0x88080000
+   console=ttyS2,115200n8
+   mem=1024M
+   partitions=uuid_disk=${uuid_gpt_disk};name=rootfs,start=2MiB,size=-,uuid=${uuid_gpt_rootfs}
+   mmcroot=/dev/mmcblk1p2 rw
+   qspiroot=/dev/mmcblk0p1 rw
+   usbroot=/dev/sda2 rw
+   mmcargs=setenv bootargs console=${console} ${optargs} vram=${vram} mem=${mem} root=${mmcroot} rootfstype=${mmcrootfstype}
+   qspiargs=setenv bootargs console=${console} ${optargs} vram=${vram} mem=${mem} root=${qspiroot} rootfstype=${mmcrootfstype}
+   usbargs=setenv bootargs console=${console} ${optargs} vram=${vram} mem=${mem} root=${usbroot} rootfstype=${mmcrootfstype}
+   netargs=setenv bootargs console=${console} ${optargs} mem=${mem} root=/dev/nfs nfsroot=${serverip}:${rootpath},${nfsopts} rw ip=dhcp
+   loadbootscript=fatload mmc ${mmcdev} ${loadaddr} boot.scr
+   bootscript=echo Running bootscript from mmc${mmcdev} ...; source ${loadaddr}
+   loadbootenv=fatload mmc ${mmcdev} ${loadaddr} ${bootenv}
+   loadusbenv=fatload usb ${usbdev} ${loadaddr} ${bootenv}
+   importbootenv=echo Importing environment from mmc${mmcdev} ...; env import -t ${loadaddr} ${filesize}
+   importusbenv=echo Importing environment from usb${mmcdev} ...; env import -t ${loadaddr} ${filesize}
+   loadimage=load mmc ${bootpart} ${loadaddr} ${bootdir}/${bootfile}
+   mmcboot=mmc dev ${mmcdev}; if mmc rescan; then echo SD/MMC found on device ${mmcdev};if run loadbootenv; then echo Loaded environment from ${bootenv};run importbootenv;if test -n $uenvcmd; then echo R
+   netboot=echo Booting from network ...; setenv autoload no; dhcp; tftp ${loadaddr} ${bootfile}; tftp ${fdtaddr} ${fdtfile}; run netargs; bootm ${loadaddr} - ${fdtaddr}
+   usbboot=echo Booting from usb ...; usb start; run findfdt; if run loadusbenv; then echo Loaded environment from usb/${bootenv};run importusbenv;if test -n $uenvcmd; then echo Running uenvcmd ...;run u
+   loadfdt=load mmc ${bootpart} ${fdtaddr} ${bootdir}/${fdtfile};
+   ERROR: %s - start address is not aligned - 0x%08x
+   ERROR: %s - stop address is not aligned - 0x%08x
+   usbethaddr
+   %s: Failed to power down DPLL: PLL_STATUS 0x%x
+   Starting kernel ...%s
+   Board identified, using %d entries B(%d) C(%d)
+   ddr_vtt_en
+   Board: Desay-SV G5 Board
+   ddr_1_8v
+   fdtcontroladdr
+   loadaddr
+   ## Starting application at 0x%08lX ...
+   start application at address 'addr'
+   addr [arg ...]
+       - start application at address 'addr'
+   autostart
+   Automatic boot of image at addr 0x%08lX ...
+   addr [addr ...]
+       - print header information for application image starting at
+         address 'addr' in memory; this includes verification of the
+   GUNZIP: uncompress, out-of-mem or overwrite error - must RESET board to recover
+   ERROR: new format image overwritten - must RESET the board to recover
+   initrd_start
+   ## Transferring control to RTEMS (at address %08lx) ...
+   confaddr
+   ## Transferring control to Plan 9 (at address %08lx) ...
+   ## Transferring control to NetBSD stage-2 loader (at address %08lx) ...
+   ## Starting vxWorks at 0x%08lx, device tree at 0x%08lx ...
+   fatload mmc 0:1 0x825f0000 dra7-g5-r1.dtb
+   no dra7-g5-r1.dtb in sd card
+   start ...
+   error: normal address 0x%08X at checking %d
+   emmc normal address 0x%08X pass
+   Write dra7-g5-r1.dtb Done
+   Start upgrade OS
+   update_image dtb - update dra7-g5-r1.dtb
+   emmc_test [bootpart:0/1] [memory address] [mmc address] [size] [magic] [check times]
+   .callbacks:callbacks,.flags:flags,baudrate:baudrate,bootfile:bootfile,loadaddr:loadaddr,stdin:console,stdout:console,stderr:console,
+   ethaddr:ma,
+   Warning: Non-standard access flags. (0x%x)
+   -> start
+   eth%iaddr
+   ip_addr     = %s
+   TLB addr
+   relocaddr
+   sp start 
+   print Board Info structure
+   <interface> <dev[:part]> [addr] [filename] [bytes]
+         to address 'addr' from ext4 filesystem
+   <interface> [<dev[:part]> [<addr> [<filename> [bytes [pos]]]]]
+         to address 'addr' from dos filesystem.
+         'pos' gives the file position to start loading from.
+   The address of the fdt is invalid (NULL).
+   The address of the fdt is %#08lx
+   No FDT memory address configured. Please configure
+   the FDT address via "fdt addr <address>" command.
+      start
+   #address-cells
+   linux,initrd-start
+
+--- boot/board related strings across os.bin:
+   cubic.hystart_ack"
+   )console=ttyS2,115200n8 elevator=noop root=/dev/mmcblk0p1 rw
+   =root=/dev/ram0 rootfstype=ext4 rw initrd=0x83300000,4M console=ttyS2,115200 quiet
+   Board: Desay-SV G5 Board
+   bootcmd=run findfdt; run mmcboot;setenv mmcdev 1; setenv bootpart 1:2; setenv mmcroot /dev/mmcblk1p2 rw; run mmcboot;run loadqspi
+   console=ttyS2,115200n8
+   mmcroot=/dev/mmcblk1p2 rw
+   qspiroot=/dev/mmcblk0p1 rw
+   usbroot=/dev/sda2 rw
+   mmcrootfstype=ext4 rootwait
+   mmcargs=setenv bootargs console=${console} ${optargs} vram=${vram} mem=${mem} root=${mmcroot} rootfstype=${mmcrootfstype}
+   qspiargs=setenv bootargs console=${console} ${optargs} vram=${vram} mem=${mem} root=${qspiroot} rootfstype=${mmcrootfstype}
+   usbargs=setenv bootargs console=${console} ${optargs} vram=${vram} mem=${mem} root=${usbroot} rootfstype=${mmcrootfstype}
+   netargs=setenv bootargs console=${console} ${optargs} mem=${mem} root=/dev/nfs nfsroot=${serverip}:${rootpath},${nfsopts} rw ip=dhcp
+   boot default, i.e., run 'bootcmd'
+   WARNING: could not set bootargs %s.
+   =console=ttyS2,115200n8 elevator=noop root=/dev/mmcblk0p1 ro rootwait earlyprintk fixrtc omapdrm.num_crtc=1 consoleblank=0 cma=64M rootfstype=ext4 quiet
+   mmcargs=setenv bootargs 'console=ttyS2,115200n8 elevator=noop earlyprintk fixrtc omapdrm.num_crtc=1 consoleblank=0 cma=64M mem=1024M root=/dev/mmcblk1p2 rw rootwait rootfstype=ext4 ip=off upgrade=1'
+   mmcargs=setenv bootargs 'console=ttyS2,115200n8 elevator=noop earlyprintk fixrtc omapdrm.num_crtc=1 consoleblank=0 cma=64M mem=1024M root=/dev/mmcblk1p2 rw rootwait rootfstype=ext4 ip=off testing=1'
+
+============================================================================
+## radio.bin @0x8402309 (401,200 bytes)
+============================================================================
+first 64 bytes: d0 65 42 20 51 07 40 00 1b 07 40 00 ed 06 40 00 13 07 40 00 81 05 40 00 5d 0e 40 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 6d 07 40 00 89 05 40 00 00 00 00 00 23 07 40 00 89 07 40 00
+ascii: .eB Q.@...@...@...@...@.].@.................m.@...@.....#.@...@.
+md5: 2167757e445f9fde6d02f9b841ccb96f  entropy_uniq_bytes=256
+interesting strings:
+   pGBOOT_2016.09.18
+   @ GEN2_PQ_MP2017
+   EEP_VER_160106EEP DONE
+   GEN2_PQ_MP2017
+   Tuner_IIC
+   P@ Tuner_Lithio_InitProcessing:Start  
+   Tuner_Lithio_InitProcessing:DeviceReset Error  
+   P@ Tuner_Lithio_InitProcessing:CheckVersionValid Success  
+   Tuner_Lithio_InitProcessing:CheckVersionValid Error  
+   Tuner_Lithio_InitProcessing:Finished  
+   O@ Tuner_Lithio_LoadPatch V102  
+   O@ Tuner_Lithio_LoadPatch V205  
+   load dsp1 pram fail.
+   load dsp2 pram fail.
+   load dsp1 cram fail.
+   load dsp2 cram fail.
+   fR@ load dsp1 OFREG fail.
+   iR@ load dsp2 OFREG fail.
+   P@ load dsp1 cram fail.
+   P@ load dsp2 cram fail.
+   R@ load dsp2 OFREG fail.
+   Switch to Tuner channel.
+   @ akmDSP_set_fader = %d
+   Core to radio, value = %d.
+   Radio to core, volume = %d.
+   S@ Level: very bright
+   Level: very dark
+   N@ recover keyboard_backup_error =%08x
+   LED Driver
+   j@ Radio standby by hour mode
+   j@ Radio going to off state
+   j@ Radio On state
+   Radio going to sleep state
+   j@ Radio to sleep state
+   Wakeup by on reboot
+   Wakeup by standby reboot
+   Tuner thread
+   Tuner mbx
+   @ /O@ rec_recover_band_desc band = %d, freq= 0x%04x,0x%04x 
+   O@ -O@ receive_thread:REC_POWER_STATUS_IDLE- uP2TUNER_RST = 1 
+   N@  RK_TUNE lever read from gpio = %02x, time tick = %d
+    RK_VOLUME lever read from gpio = %02x, time tick = %d
+   uP2CORE_REVERSE, GPIO_DATA_HIGH.
+   uP2CORE_REVERSE, GPIO_DATA_LOW.
+    #%&''(-/134999:;<AACEJKKLRSVWXZ_`abdfggijopqtuvwy{{|~
+   Std+ MP2017_PQ_
+   EEP_VER_170110EEP DONE
+   LED_RADIO
+    RK_VOLUME exception interupt happen, rot_lever = %02x, time tick = %d
+   Tuner_Lithio_InitProcessing:CheckVersionValid Fix pacth type to V102  
+   Tuner_Lithio_InitProcessing:CheckVersionValid Fix pacth type to V205  
+   sh_version
+
+all printable strings (first 80, len>=8):
+   pGBOOT_2016.09.18
+   @ GEN2_PQ_MP2017
+   )D h@\xUh
+   )D h@\xUh
+   F;F2F)FPF
+   ;F2F)F F
+   RUN_APPLICATION
+   B L B |"B L
+   @ L"B |"B 
+   _______________
+   EEP_VER_160106EEP DONE
+   RUN_APPLICATION
+   RUN_APPLICATION 
+   GEN2_PQ_MP2017
+   RUN_APPLICATION
+   GEN2_PQ_MP2017
+   07.54_200303__C
+   (FAFGF"F
+   HF1F*FCF
+    y2yyyy<g
+   @ PB@ =B@ 
+   F;F2F)F F
+   I@ !I@ "I@ 
+   ,I@ !I@ 
+   I@ Diagnostic Coding Value are : %x  %x  %x  %x  %x  %x  %x 
+   CAN_DESC_EEP
+   @ 8K@ LK@ D
+   \K@ dK@ 
+   HK@ XK@ 
+   @ 8K@ LK@ D
+   XK@ HK@ D
+   K@ LK@ p
+   0H@]0IHUh
+   @ NK@ 4K@ 0K@ LK@ XK@ 
+   @ \K@ ,K@ (K@ p
+   XK@ LK@ l
+    >L qd `q=H
+     rV `r% 
+    FIHr% EI
+    @IHr% ?I
+    0IHr% /I
+    1IHr% /I
+   @ VB@ XB@ {B@ p
+   @ <B@ CB@ !I@ XB@ -
+   @ CB@ iB@ kB@ xB@ yB@ zB@ jB@ rB@ 
+   @ xB@ rB@ iB@ CB@ zB@ VB@ XB@ 
+   31 BA 01 07 (0366) Start Selective Front Left Speaker Bass.
+   DESC_APP(Tone test)
+   31 BA 01 07 (0367) Start Selective Front Right Speaker Bass.
+   31 BA 01 07 (036A) Start Selective Front Left Speaker Treble.
+   31 BA 01 07 (036B) Start Selective Front Right Speaker Treble.
+   31 BA 01 07 (036C) Start Selective Rear Left Speaker Treble.
+   31 BA 01 07 (036D) Start Selective Rear Right Speaker Treble.
+   jB@ VB@ iB@ xB@ rB@ 31 BA 01 07(0x0356) Start selective Auto Display Test.
+   @ PB@ channel2 Driving school function stored is d%.
+   DESC_APP(adaption)
+   channel3 Operating time audio after kl. 15 off stored is d%.
+   channel5 deactive for RDS stored is d%.
+   channel36 mirrorlink speed limit switch stored is d%.
+   channel47 mirrorlink country coid switch stored is d%.
+   channel50 ETM switch stored is d%.
+   @ vB@ 32 B8 01 02 Stop Speaker tone test.
+   DESC_APP(Tone test)
+   iB@ kB@ CB@ xB@ 
+   @ {B@ 32 B8 01 07 Stop Selective Speaker tone test.
+   M@ hB@ -
+   @ DB@ !I@ 
+   MIB2-S-R-CN  
+   H@ hB@ \B@ `B@ dB@ -
+   @ ZB@ =B@ hB@ p
+   I@ !I@ "I@ 
+   wB@ 3B@ vB@ iB@ VB@ CB@ jB@ pB@ qB@ 
+   @ Measurement,copy pa_diag_resutl[][].
+   CAN_DESC_DTC_Pro
+    &,28>DJPV\
+   L@  L@ $L@ (L@ ,L@ 0L@ 4L@ 8L@ <L@ @L@ DL@ HL@ LL@ PL@ TL@ 
+   TpG}K@ p
+   PM@ TM@ `M@ ^M@ ]M@ p
+   PM@ `M@ UM@ TM@ ]M@ ^M@ 
+   ^M@ PM@ TM@ ]M@ `M@ _M@ UM@ p

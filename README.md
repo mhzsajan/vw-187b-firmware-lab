@@ -9,7 +9,7 @@ with features switched off:
 | | Desay SV ("official") | NoName / "Tianbao" (community clone) |
 |---|---|---|
 | Firmware package | single `.bin` + `.md5` (`6RD_035_187B_TR7247_SW03xx_…`) | `.tar` overlay packs (`std_plus_pss-6.5inch_*`) |
-| Platform | U-Boot SPL 2014.07, `Desay-SV G5 Board`, Linux **3.14.57**, Desay **SVP** service framework, **Kanzi** UI (`.kzb`) | NXP i.MX6, Freescale **LTIB**, Linux **3.0.35**, Qt 4.7.4 HMI (`opt/hmi`) + OVG graphic resources |
+| Platform | **TI DRA72x (Jacinto 6)**, U-Boot 2014.07 board `mib2_g`, Linux **3.14.57**, 1 GB RAM, Wayland/Qt5 + **Kanzi** UI, Desay **SVP** framework | NXP i.MX6, Freescale **LTIB**, Linux **3.0.35**, Qt 4.7.4 HMI (`opt/hmi`) + OVG graphic resources |
 | Update model | `updateservice` + `libupdate.so`, package validity / md5 / rollback counters | plain tar + `/bin/sh` hooks, **no signing** |
 | CarPlay / CarLife / MirrorLink | yes | yes |
 | Android Auto | **absent** (no AA binaries, no certs) | **present** (`opt/AndroidAuto/*`, `/etc/aap_dev_hu_*`) |
@@ -36,10 +36,13 @@ The headline findings, with file/offset evidence, are in
 ```
 docs/
   feasibility-report.md      main findings, evidence table, confidence levels
+  desay-hardware.md          full BOM / boot chain / software stack / capability matrix
+  desay-unit-identity.md     the installed unit (SW0317) and its engineering mode
   desay-container.md         .bin container layout, offsets, extraction recipe
   noname-platform.md         tar package anatomy, AA stack, theme mechanism
   library-manifest.md        the local firmware library layout + hashes
   assets/skoda-logo-preview.png   decoded Skoda splash from logoSK tar
+  assets/screenshots/        unit screens: version info, system status, engineering mode
   evidence/                  raw outputs the conclusions are based on
 tools/
   scan_magics.py             generic container/FS signature scanner

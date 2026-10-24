@@ -26,14 +26,24 @@ Phase 2 — Desay package internals — **in progress**, container table decoded
       stored header field; try CRC32-low16, summed words, and hashes over `radio.bin` vs the
       *uncompressed* app data. This tells us what else a hand-made package must satisfy.
 
-## P1.5 — Extract the remaining Desay components
+## P1.5 — Extract the remaining Desay components — **done**
 
-- [ ] `app-pkg.bin` (52.5 MB gzip → tar): what ships here vs `svp.bin`? Possibly the Kanzi
-      themes/resources, navigation app, or a second userspace.
-- [ ] `os.bin` nested pack (own record table, count 3): parse its three sub-records and extract
-      kernel / U-Boot / any splash partition.
-- [ ] `radio.bin` (401,200 bytes, flat): identify format (MCU/DSP image?) and whether it holds
-      the tuner/amp MCU firmware. Compare with the `rmt_only` update mode.
+- [x] `app-pkg.bin`: 17 Kanzi app packages (`sv.g5.mib2.*.pkg`, each gzip→tar) + `install.lst`.
+      **Brand = per-app Kanzi bundle name `VW_MP2017*.kzb`** — this is the theme/branding switch.
+- [x] `os.bin`: nested pack, record `G5-R1`; kernel `Linux-3.14.57` at +0xA00, U-Boot
+      2014.07-00212-gd0650b9 at +0x51FE00. **No splash/logo in U-Boot or kernel.**
+- [x] `radio.bin`: plaintext ARM **MCU firmware** (tuner Lithio/TEF668x + DSP patches, AKM audio
+      DSP, CAN coding, keys/LED/EEPROM). This is what VCDS talks to.
+
+## P0 — Hardware access paths (new, highest leverage)
+
+- [ ] Confirm the SoC is a **GP (general-purpose, unsigned boot)** device: the kernel/U-Boot
+      uImages carry no signature, but check the DRA7 boot config / eFuse state.
+- [ ] Locate the **UART3 (`ttyS2`) pads** on the mainboard; a read-only console session would give
+      U-Boot env, partition map, kernel logs — the foundation for any custom-OS work.
+- [ ] Document the U-Boot `upgrade=1` / `testing=1` boot modes and what userspace does with them.
+- [ ] Bench-harness the **MCU CAN** interface (VCDS without the car's gateway) to read the
+      diagnostic coding values and check for a brand/variant byte.
 
 ## P2 — Desay boot logo path
 

@@ -33,7 +33,7 @@ Evidence: `20-NoName-Tianbao/V5314_VW-PQ-GP` and `V5515_170421_VW-PQ-GP` tar mem
 
 - **Container:** `48 81 48 81 | 02 00 00 00 | <name> | mib2 | ...` header (only ~336 non-zero bytes, rest zero padding to `0x200000`), then **gzip→tar** component payload. At `0x200000` the stream is a valid gzip tar whose members are the application partition (`./bin`, `./lib`, `./share`, `./etc`); 574 files.
 - **Payload is not encrypted** (it decompresses) — so the filesystem is *readable*, but that is not the same as *writable* (see §3.2).
-- **Platform:** same CPU family as the clone but a different BSP/product: **U-Boot SPL 2014.07-00209-g36d39ae**, board string **`Desay-SV G5 Board`**, **kernel `Linux-3.14.57`**, load addr `0x80008000`, i.MX boot image support, `G5 platform` tag. No LTIB, no Qt-HMI — this is Desay's own **SVP** service framework (`exlapservice`, `ilmservice`, `appmgr`, `updateservice`, RCF/IPC) with a **Kanzi** UI (`libUICore-kanzi.so`, `share/ui/*.kzb`).
+- **Platform:** **Texas Instruments DRA72x "Jacinto 6"** (dual Cortex-A15, SGX544 GPU, IPU2) — U-Boot 2014.07-00212-gd0650b9, board env `board=mib2_g`, "Board: Desay-SV G5 Board", device tree **`dra7-g5-r1.dtb`**, **kernel `Linux-3.14.57`** (TI SDK), `mem=1024M`, console `ttyS2` 115200, eMMC/SD + ext4. **Not i.MX6** (earlier "Freescale i.MX Boot Image" hits were generic uImage type-table strings) and **not Windows CE**. Userspace is Desay's own **SVP** service framework (`exlapservice`, `ilmservice`, `appmgr`, `updateservice`, RCF/IPC) on Qt5/Wayland with a **Kanzi** UI (`libUICore-kanzi.so`, `share/ui/*.kzb`). Full BOM: `docs/desay-hardware.md`.
 - **Features (complete list found):** `carplayservice` + `libcarplay`, `carlifeservice` + `libcarlife` + Baidu `bdim/bdsc` blobs, `mirrorlinkservice` + `libmirrorlink`. **No `aap_*` anything, no Android Auto certs, no AA binaries.** The absence is genuine, not a hidden flag.
 - **Brand assets present:** `share/CarPlay/VWicon_*.png`, `DesaySVicon_*.png`, `Mazdaicon_*.png`; UI bundles all named `Mazda_G5_*.kzb`. i.e. the G5 platform is sold to several brands and *brand is chosen at build time*. **There is no Skoda asset anywhere in the image.**
 
@@ -59,8 +59,12 @@ script/logo.bin : 1,536,004 bytes
 
 On the Desay:
 - `etc/logo.sh` is an **empty stub** (all three cases `power_up/user_on/user_off` do nothing).
-- The boot logo is drawn by UI app id 19 (`app-run 19 normal 1  #logo` in `etc/test.sh`), i.e. from **`share/ui/<Brand>_G5_Logo.kzb`** — a compiled **Kanzi** bundle (magic `.KZB`, contains a `logo` node and an embedded PNG at offset 91083). It is not a raw blob and not a writable partition.
-- There is no Skoda `.kzb` to swap in, and no user-writable overlay mechanism at all.
+- There is **no splash in the bootloader or kernel** at all (`splash` / `logo` / `bootlogo` absent from `os.bin`; no `splashimage` env in U-Boot).
+- The startup/lock screen is drawn by the UI, and **branding is a per-app Kanzi bundle**: every
+  app package ships `bin/VW_MP2017*.kzb` + `bin/VW_MP2017*.kzb.cfg`. The shared `svp.bin` carries
+  only a generic `share/ui/Mazda_G5_Logo.kzb` fallback from the same G5 code base.
+- So "Skoda theme" on this platform = a **build variant** (`SK_MP2017*.kzb` or equivalent Skoda
+  project). No Skoda bundle exists in this image and there is no runtime brand switch.
 
 ### 3.2 The Desay `.bin` is validated by a closed updater with rollback counters
 
