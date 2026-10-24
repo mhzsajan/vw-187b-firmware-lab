@@ -33,7 +33,11 @@ The headline findings, with file/offset evidence, are in
 
 ## Repository map
 
+> **Resuming later? Start with [`STATUS.md`](STATUS.md)** — it has the current state, confirmed
+> findings, open questions, where the firmware data lives, environment gotchas and next actions.
+
 ```
+STATUS.md                    cold-start handover: state, open questions, env notes, next steps
 docs/
   feasibility-report.md      main findings, evidence table, confidence levels
   desay-hardware.md          full BOM / boot chain / software stack / capability matrix
