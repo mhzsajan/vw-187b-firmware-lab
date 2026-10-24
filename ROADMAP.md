@@ -37,13 +37,22 @@ Phase 2 — Desay package internals — **in progress**, container table decoded
 - [ ] Acceptance test: repack **without** modification reproduces a byte-identical `.bin`.
 - [ ] Then a single-asset delta (e.g. one `.png` inside `app-pkg.bin`) and verify content.
 
-## P2 — Desay logo path (new lead)
+## P2 — Desay logo path — **format cracked, payload built**
 
-- [ ] `libsvapi_vw.so.1.4.0` exports `svapi_exlap_logo_get/_set` and logs
-      `"svapi: load exlap_logo_index, invalid, Using default"` — find the **exlap logo index**
-      file/format: the logo may be selectable by an index, not only baked into the Kanzi bundle.
-- [ ] Check `app-pkg`/`svp.bin` for the index file and the logo assets it references.
-- [ ] Only after that decide whether a Skoda logo needs Kanzi authoring or just an index entry.
+- [x] Rootfs `/usr/share/rvc/logo/`: 13 × `Startscreen_*.ppm`, format = `P6` + 1,152,000 B RGB +
+      384,000 B pad = 1,536,015 B; selection by a **NOR logo index** (`logo_os`, `Logo_Name_Array`).
+- [x] `tools/desay/make_startscreen_ppm.py` generates the padded payload (all 13 slots),
+      round-trip verified (md5 `079a5ec0a7d8af3493a5a969defe8aaf`).
+- [x] NoName comparison: the `5606 SKODA` pack replaces all 24 slots with one Skoda image —
+      the same trick works here (all 13 slots, index-proof).
+- [ ] Patch `targetfs.img` in place with the 13 payloads (`tools/desay/patch_targetfs.py`).
+- [ ] Optional extras: Skoda CarPlay icon in `svp.bin`, `opening_ttl.avi` animation.
+
+## P2.5 — Force-update strategy (**last software blocker**)
+
+- [ ] The updater skips components whose version matches (`"%s is match, no upgrade"`). Decide how
+      a same-version patched `os` component gets written: bump version string + `ROLL_BACK_NO`
+      (preferred), forced/factory mode, or console write. Needed before any flash.
 
 ## P1.5 — Extract the remaining Desay components — **done**
 

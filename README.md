@@ -1,4 +1,4 @@
-﻿# VW 187B firmware lab (`6RD 035 187B` / RCD330 family)
+# VW 187B firmware lab (`6RD 035 187B` / RCD330 family)
 
 Reverse-engineering notes, tooling and experiments for the VW PQ-platform 6.5" radio
 **`6RD 035 187B`** (the Chinese RCD330-family unit).
@@ -37,26 +37,30 @@ The headline findings, with file/offset evidence, are in
 > findings, open questions, where the firmware data lives, environment gotchas and next actions.
 
 ```
-STATUS.md                    cold-start handover: state, open questions, env notes, next steps
-  dev-plan-installed-unit.md target is the installed unit: gates, risk classes, milestones
+STATUS.md                    cold-start handover: state, findings, open questions, env notes, next steps
+ROADMAP.md                   what to build / verify next (P0 hardware, P1 validation, P2 logo)
 docs/
   feasibility-report.md      main findings, evidence table, confidence levels
   desay-hardware.md          full BOM / boot chain / software stack / capability matrix
   desay-unit-identity.md     the installed unit (SW0317) and its engineering mode
   desay-container.md         .bin container layout, offsets, extraction recipe
-  why-no-custom-firmware.md  why the Desay scene doesn't exist â€” and the false "WinCE" explanation
+  validation-and-repack.md   PROOF: validation is md5sum (no signature) + repack recipe
+  desay-capabilities.md      what is/isn't achievable on this unit (ranked, with risk)
+  skoda-theme-analysis.md    NoName Skoda pack decoded + the exact Desay splash format
+  desay-action-plan.md       end-to-end checklist to a Skoda splash (phases, owners, risks)
+  dev-plan-installed-unit.md target is the installed unit: gates, risk classes, milestones
+  why-no-custom-firmware.md  why the Desay scene doesn't exist - and the false "WinCE" explanation
   noname-platform.md         tar package anatomy, AA stack, theme mechanism
   library-manifest.md        the local firmware library layout + hashes
-  assets/skoda-logo-preview.png   decoded Skoda splash from logoSK tar
-  assets/screenshots/        unit screens: version info, system status, engineering mode
+  assets/                    unit screenshots + Skoda/VW start-screen comparisons
   evidence/                  raw outputs the conclusions are based on
 tools/
   scan_magics.py             generic container/FS signature scanner
-  desay/                     .bin header probe, uImage/ELF probe, rootfs carver, updater symbols
+  desay/                     container + os.bin probes, rootfs extractor, ELF import analyser,
+                             updater-string probe, start-screen PPM generator
   noname/                    tar package inventory probe
-  theme/render_logo.py       logo.bin -> PNG renderer
+  theme/render_logo.py       logo.bin -> PNG renderer (NoName)
   arrange/                   PowerShell library organiser (dedupe + hashes + ACL normalisation)
-ROADMAP.md                   what to build / verify next
 ```
 
 ## Ground rules
@@ -94,7 +98,12 @@ constants at the top (or the `SRC`/`DESAY` variables) before running.
 
 ## Status
 
-Phase 1 (platform identification + feasibility) is complete. See [`ROADMAP.md`](ROADMAP.md)
-for the open questions â€” starting with whether Desay's package validation is plain MD5 or
-cryptographic, which decides whether a modified `.bin` could ever be flashed.
+Platform identification, the container/rootfs reversal and the update-validation question are
+**done** (validation is plain `md5sum`, no signature). The achievable firmware goal is a
+**Skoda start screen**: the format is decoded (1,536,015-byte padded PPM) and the payload is
+generated and verified. Next: in-place patcher + container rebuilder, then the force-update
+question, then the hardware recovery path, then the first flash.
+
+See [`STATUS.md`](STATUS.md) for the current state and
+[`docs/desay-action-plan.md`](docs/desay-action-plan.md) for the end-to-end checklist.
 
