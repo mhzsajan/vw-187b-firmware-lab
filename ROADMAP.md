@@ -60,11 +60,16 @@ Phase 2 — Desay package internals — **in progress**, container table decoded
 - [ ] Check whether any entry can trigger an update from USB/SD (the System Information screen
       already has an `Update software` button).
 
-## P4 — NoName tooling
+## P4 — NoName tooling — **reference only, not a development target**
 
-- [ ] `tools/theme/render_logo.py`: add the reverse direction (PNG → 800×480 BGRA `logo.bin`
-      with the 4-byte header) plus an overlay-tar packer, so custom splashes can be produced.
-- [ ] Verify the MTD5 backup/restore procedure on hardware before writing anything.
+The project target is the **Desay** unit installed in the car (`docs/dev-plan-installed-unit.md`).
+NoName packs are kept in the library purely to explain the ecosystem and to document the
+contrast (unsigned tar overlays, raw MTD5 splash, AA stack). No NoName tooling is planned unless
+the target changes; the items below are parked.
+
+- [ ] (parked) `tools/theme/render_logo.py`: reverse direction (PNG → 800×480 BGRA `logo.bin`)
+      plus an overlay-tar packer.
+- [ ] (parked) Verify the MTD5 backup/restore procedure on hardware.
 
 ## Non-goals
 
